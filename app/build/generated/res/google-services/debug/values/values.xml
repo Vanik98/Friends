@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">852396825996-t3c7ru31h7r3283jsguku6s508h0jg5b.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://friends-e29ec.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">852396825996</string>
+    <string name="google_api_key" translatable="false">AIzaSyCujYK6sZS6LolSPlIUGUfW3S9DCntpiLI</string>
+    <string name="google_app_id" translatable="false">1:852396825996:android:bab126d5a4f8284f588aa9</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCujYK6sZS6LolSPlIUGUfW3S9DCntpiLI</string>
+    <string name="google_storage_bucket" translatable="false">friends-e29ec.appspot.com</string>
+    <string name="project_id" translatable="false">friends-e29ec</string>
+</resources>

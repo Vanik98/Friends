@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Friends</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="take_number_error">Please Enter Valid Number</string>
+    <string name="account_is_created">Account Successfully created</string>
+    <string name="account_is_not_created">Account not created</string>
+    <string name="a">asd</string>
+    <string name="account_is_verify">Account is verify</string>
+    <string name="account_is_not_verify">Account is not verify</string>
+    <string name="not_signin">Can not sign in</string>
+</resources>
