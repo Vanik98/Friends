@@ -23,7 +23,7 @@ import org.jetbrains.anko.*
      lateinit var numberCode:EditText
      lateinit var v: View
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun createView(ui: AnkoContext<MainActivity>) = with(ui) {
+     = with(ui)
 
         verticalLayout {
             clipToPadding = false

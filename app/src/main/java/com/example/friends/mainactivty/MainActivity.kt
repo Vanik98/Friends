@@ -19,6 +19,7 @@ import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.setContentView
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(),MainScreenContract.MainView {
@@ -55,18 +56,18 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
 
     override fun showMessageIsAccountCreated(isCreate: Boolean) {
         if(isCreate){
-            Toast.makeText(this,getString(R.string.account_is_created),Toast.LENGTH_SHORT).show()
+            toast(getString(R.string.account_is_created))
         }
         else {
-            Toast.makeText(this, getString(R.string.account_is_not_created), Toast.LENGTH_SHORT).show()
+            toast(getString(R.string.account_is_not_created))
         }
     }
     override fun showMessageIsVerifyAccount(isVerify: Boolean) {
         if(isVerify){
-            Toast.makeText(this,getString(R.string.account_is_verify),Toast.LENGTH_SHORT).show()
+            toast(getString(R.string.account_is_verify))
         }
         else {
-            Toast.makeText(this, getString(R.string.account_is_not_verify), Toast.LENGTH_SHORT).show()
+           toast( getString(R.string.account_is_not_verify))
         }
     }
 
