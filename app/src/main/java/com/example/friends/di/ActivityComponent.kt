@@ -8,5 +8,5 @@ import dagger.Component
 @Component(dependencies = [ApplicationComponent::class],modules =[ActivityModule::class,MainModule::class,SaveDataModel::class,FirbaseModule::class])
 interface ActivityComponent {
     fun inject(activity: MainActivity)
-
+//aaaaaaaaaaaaaaa
 }
