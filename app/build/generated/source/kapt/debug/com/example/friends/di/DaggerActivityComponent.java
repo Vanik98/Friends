@@ -3,6 +3,12 @@ package com.example.friends.di;
 
 import android.content.SharedPreferences;
 import com.example.friends.base.BaseActivity;
+import com.example.friends.di.component.ActivityComponent;
+import com.example.friends.di.component.ApplicationComponent;
+import com.example.friends.di.module.ActivityModule;
+import com.example.friends.di.module.FirbaseModule;
+import com.example.friends.di.module.MainModule;
+import com.example.friends.di.module.SaveDataModel;
 import com.example.friends.firebase.MyFirebase;
 import com.example.friends.mainactivty.MainActivity;
 import com.example.friends.mainactivty.MainActivity_MembersInjector;

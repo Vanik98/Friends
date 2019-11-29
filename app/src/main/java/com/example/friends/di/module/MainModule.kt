@@ -1,4 +1,4 @@
-package com.example.friends.di
+package com.example.friends.di.module
 
 import com.example.friends.firebase.MyFirebase
 import com.example.friends.mainactivty.MainModel

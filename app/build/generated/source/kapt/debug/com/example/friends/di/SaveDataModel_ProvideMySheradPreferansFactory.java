@@ -2,6 +2,8 @@
 package com.example.friends.di;
 
 import android.content.SharedPreferences;
+
+import com.example.friends.di.module.SaveDataModel;
 import com.example.friends.savedata.MySheradPreferans;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;

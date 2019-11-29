@@ -2,6 +2,7 @@
 package com.example.friends.di;
 
 import com.example.friends.base.BaseActivity;
+import com.example.friends.di.module.FirbaseModule;
 import com.example.friends.firebase.MyFirebase;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;

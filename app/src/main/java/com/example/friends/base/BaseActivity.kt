@@ -1,6 +1,6 @@
 package com.example.friends.base
 
-import com.example.friends.di.ApplicationComponent
+import com.example.friends.di.component.ApplicationComponent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity

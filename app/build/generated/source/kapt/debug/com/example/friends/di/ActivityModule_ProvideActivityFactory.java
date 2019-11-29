@@ -2,6 +2,8 @@
 package com.example.friends.di;
 
 import com.example.friends.base.BaseActivity;
+import com.example.friends.di.module.ActivityModule;
+
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
 

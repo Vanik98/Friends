@@ -1,4 +1,4 @@
-package com.example.friends.di
+package com.example.friends.di.module
 
 import android.app.Activity
 import com.example.friends.firebase.MyFirebase

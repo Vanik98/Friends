@@ -2,6 +2,9 @@
 package com.example.friends.di;
 
 import android.app.Application;
+
+import com.example.friends.di.module.ApplicationModule;
+
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
 

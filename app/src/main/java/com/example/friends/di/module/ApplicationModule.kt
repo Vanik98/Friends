@@ -1,4 +1,4 @@
-package com.example.friends.di
+package com.example.friends.di.module
 
 import android.app.Application
 import com.example.friends.FriendsApplication

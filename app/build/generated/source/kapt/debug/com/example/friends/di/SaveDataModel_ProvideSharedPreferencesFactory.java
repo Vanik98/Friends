@@ -3,6 +3,8 @@ package com.example.friends.di;
 
 import android.content.SharedPreferences;
 import com.example.friends.base.BaseActivity;
+import com.example.friends.di.module.SaveDataModel;
+
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
 import javax.inject.Provider;

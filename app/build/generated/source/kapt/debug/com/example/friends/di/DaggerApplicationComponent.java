@@ -2,6 +2,10 @@
 package com.example.friends.di;
 
 import com.example.friends.FriendsApplication;
+import com.example.friends.di.component.ApplicationComponent;
+import com.example.friends.di.module.ApplicationModule;
+import com.example.friends.di.module.NetworkModule;
+
 import dagger.internal.MembersInjectors;
 import dagger.internal.Preconditions;
 

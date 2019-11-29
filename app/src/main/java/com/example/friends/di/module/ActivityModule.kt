@@ -1,4 +1,4 @@
-package com.example.friends.di
+package com.example.friends.di.module
 
 import com.example.friends.base.BaseActivity
 import dagger.Module
