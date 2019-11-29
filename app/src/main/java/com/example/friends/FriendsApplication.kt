@@ -5,7 +5,7 @@ import com.example.friends.di.component.ApplicationComponent
 import android.content.Context
 import androidx.multidex.MultiDex
 import com.example.friends.di.module.ApplicationModule
-import com.example.friends.di.DaggerApplicationComponent
+import com.example.friends.di.component.DaggerApplicationComponent
 
 
 class FriendsApplication : Application(){
