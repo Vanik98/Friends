@@ -81,6 +81,7 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
     override fun openMapActivity() {
         val intent = Intent(this,MapsActivity::class.java)
         startActivity(intent)
+
     }
 
     private fun openVerificationDialog(context:Context) {

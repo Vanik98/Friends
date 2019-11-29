@@ -23,8 +23,7 @@ import org.jetbrains.anko.*
      lateinit var numberCode:EditText
      lateinit var v: View
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-     = with(ui)
-
+    override fun createView(ui: AnkoContext<MainActivity>) = with(ui) {
         verticalLayout {
             clipToPadding = false
             backgroundColor = ResourcesCompat.getColor(resources, R.color.colorWhite, null)
