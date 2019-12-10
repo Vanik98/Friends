@@ -16,11 +16,11 @@ class MainPresenter @Inject constructor(
                     mainModel.saveAnyUser(true)
                     if (message == "created")
                     {
-                        view.openMapActivity()
+                        view.openMapActivity("")
                     }else {
                        //: onFinished taki main modely petqa jnjel,u bacel stex
 //                        mainModel.saveAnyUser(true)
-                        view.showVerifycationDialog()
+                        view.showVerificationDialog()
                         accountCreatedMessage(true)
                     }
                 }
@@ -51,7 +51,7 @@ class MainPresenter @Inject constructor(
     private fun verificationMessage(isVerify:Boolean) {
         view.showMessageIsVerifyAccount(isVerify)
         if(isVerify){
-            view.openMapActivity()
+            view.openMapActivity("")
         }
     }
 
@@ -66,7 +66,7 @@ class MainPresenter @Inject constructor(
     override  fun attach(view: MainScreenContract.MainView) {
         this.view = view
         if(mainModel.isSaveAnyUser()){
-            view.openMapActivity()
+            view.openMapActivity("")
         }
     }
 }

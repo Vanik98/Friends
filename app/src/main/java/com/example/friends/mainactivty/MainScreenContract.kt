@@ -12,9 +12,9 @@ interface MainScreenContract {
 
         fun showVerificationDialog()
 
-        fun showMessageisSignIn(isVerify:Boolean)
+        fun showMessageIsSignIn(isVerify:Boolean)
 
-        fun openMapActivity()
+        fun openMapActivity(accountId:String)
     }
 
     interface MainPresenter : BaseContract.Presenter<MainView> {

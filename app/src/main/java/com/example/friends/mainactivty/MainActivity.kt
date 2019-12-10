@@ -43,6 +43,7 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
         ui.setContentView(this)
         presenter.attach(this)
         openVerificationDialog(this)
+
     }
 
     override fun onStart() {
@@ -72,15 +73,16 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
         }
     }
 
-    override fun showMessageisSignIn(isSignin: Boolean) {
+    override fun showMessageIsSignIn(isSignin: Boolean) {
         if(!isSignin){
             Toast.makeText(this,getString(R.string.not_signin),Toast.LENGTH_SHORT).show()
         }
     }
 
 
-    override fun openMapActivity() {
+    override fun openMapActivity(accountId:String) {
         val intent = Intent(this,MapsActivity::class.java)
+        intent.putExtra("accountId",accountId)
         startActivity(intent)
 
     }
