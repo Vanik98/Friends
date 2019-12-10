@@ -8,16 +8,14 @@ import com.example.friends.savedata.MySheradPreferans
 import dagger.Module
 import dagger.Provides
 @Module
-class SaveDataModel{
+class SaveDataModule {
     @Provides
-    fun provideSharedPreferences(activity: BaseActivity): SharedPreferences
-    {
+    fun provideSharedPreferences(activity:BaseActivity): SharedPreferences {
         return  activity.getSharedPreferences("save", Context.MODE_PRIVATE)
     }
+
     @Provides
-    fun  provideMySheradPreferans(sPref: SharedPreferences): MySheradPreferans
-    {
+    fun  provideMySheradPreferans(sPref: SharedPreferences): MySheradPreferans {
         return MySheradPreferans(sPref)
     }
-
 }

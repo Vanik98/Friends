@@ -6,13 +6,12 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.friends.R
 import com.example.friends.base.BaseActivity
-import com.example.friends.di.*
 import com.example.friends.di.component.ApplicationComponent
 import com.example.friends.di.component.DaggerActivityComponent
 import com.example.friends.di.module.ActivityModule
 import com.example.friends.di.module.FirbaseModule
 import com.example.friends.di.module.MainModule
-import com.example.friends.di.module.SaveDataModel
+import com.example.friends.di.module.SaveDataModule
 import com.example.friends.mapactivty.MapsActivity
 import com.example.friends.ui.DialogRegistrationUi
 import com.example.friends.ui.MainActivityUI
@@ -31,7 +30,7 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
             .activityModule(ActivityModule(this))
             .mainModule(MainModule())
             .firbaseModule(FirbaseModule())
-            .saveDataModel(SaveDataModel())
+            .saveDataModule(SaveDataModule())
             .build()
             .inject(this)
     }

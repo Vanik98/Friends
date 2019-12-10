@@ -1,6 +1,7 @@
 package com.example.friends.di.module
 
 import com.example.friends.firebase.MyFirebase
+import com.example.friends.mainactivty.MainActivity
 import com.example.friends.mainactivty.MainModel
 import com.example.friends.mainactivty.MainPresenter
 import com.example.friends.mainactivty.MainScreenContract

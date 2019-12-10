@@ -3,32 +3,39 @@ package com.example.friends.mapactivty
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.friends.R
-import com.example.friends.mainactivty.MainScreenContract
+import com.example.friends.base.BaseActivity
+import com.example.friends.di.component.ApplicationComponent
+import com.example.friends.di.component.DaggerActivityComponent
+import com.example.friends.di.module.ActivityModule
+import com.example.friends.di.module.MapModule
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.navigation.NavigationView
-import javax.inject.Inject
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : BaseActivity(), OnMapReadyCallback {
+    override fun setupComponent(applicationComponent: ApplicationComponent) {
+        DaggerActivityComponent.builder()
+            .applicationComponent(applicationComponent)
+            .activityModule(ActivityModule(this))
+            .mapModule(MapModule())
+            .build()
+            .inject(this)
+    }
 
     private lateinit var mMap: GoogleMap
     private lateinit var locationManager : LocationManager
@@ -113,6 +120,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),1)
         }
 
+    }
+    private fun showUserInformation(){
+        val accountId = intent.getStringExtra("accountId")
+//        presenter.loadData(accountId)
     }
 
 }

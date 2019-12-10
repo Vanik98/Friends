@@ -8,7 +8,7 @@ interface MapActivtyContract {
     }
 
     interface MainPresenter : BaseContract.Presenter<MapView> {
-        fun loadData():List<Friends>
+        fun loadData(accountId:String):List<Friends>
     }
 
     interface MainModel : BaseContract.Model{
@@ -20,6 +20,6 @@ interface MapActivtyContract {
             fun onFailure(t: Throwable)
 
         }
-        fun getFriends():List<Friends>
+        fun getFriends(accountId:String):List<Friends>
     }
 }
