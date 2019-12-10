@@ -10,7 +10,7 @@ interface MainScreenContract {
 
         fun showMessageIsVerifyAccount(isVerify:Boolean)
 
-        fun showVerifycationDialog()
+        fun showVerificationDialog()
 
         fun showMessageisSignIn(isVerify:Boolean)
 

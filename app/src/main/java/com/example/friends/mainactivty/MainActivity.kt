@@ -98,7 +98,7 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
     }
 
 
-     override fun showVerifycationDialog() {
+     override fun showVerificationDialog() {
         val dialogUI=DialogRegistrationUi(AnkoContext.Companion.create(ctx, ui.v))
         dialogUI.chackCode.onClick{
             val verifyCode = dialogUI.verifyCode.text.toString()
