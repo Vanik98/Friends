@@ -24,6 +24,7 @@ import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(),MainScreenContract.MainView {
+
     override fun setupComponent(applicationComponent: ApplicationComponent) {
         DaggerActivityComponent.builder()
             .applicationComponent(applicationComponent)
@@ -64,6 +65,7 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
             toast(getString(R.string.account_is_not_created))
         }
     }
+
     override fun showMessageIsVerifyAccount(isVerify: Boolean) {
         if(isVerify){
             toast(getString(R.string.account_is_verify))
@@ -79,6 +81,13 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
         }
     }
 
+    override fun showVerificationDialog() {
+        val dialogUI=DialogRegistrationUi(AnkoContext.Companion.create(ctx, ui.v))
+        dialogUI.chackCode.onClick{
+            val verifyCode = dialogUI.verifyCode.text.toString()
+            presenter.checkVerificationCode(verifyCode)
+        }
+    }
 
     override fun openMapActivity(accountId:String) {
         val intent = Intent(this,MapsActivity::class.java)
@@ -100,12 +109,5 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
     }
 
 
-     override fun showVerificationDialog() {
-        val dialogUI=DialogRegistrationUi(AnkoContext.Companion.create(ctx, ui.v))
-        dialogUI.chackCode.onClick{
-            val verifyCode = dialogUI.verifyCode.text.toString()
-            presenter.checkVerificationCode(verifyCode)
-        }
-    }
 
 }
