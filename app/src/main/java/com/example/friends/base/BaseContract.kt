@@ -11,5 +11,7 @@ abstract class BaseContract {
     interface View {
 
     }
+
     interface  Model{}
+
 }

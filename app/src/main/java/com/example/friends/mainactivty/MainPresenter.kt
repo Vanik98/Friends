@@ -2,7 +2,6 @@ package com.example.friends.mainactivty
 
 import javax.inject.Inject
 
-
 class MainPresenter @Inject constructor(
     var mainModel: MainScreenContract.MainModel
 ) : MainScreenContract.MainPresenter {

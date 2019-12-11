@@ -9,11 +9,12 @@ import com.example.friends.FriendsApplication
 import com.example.friends.mainactivty.MainActivity
 
 abstract class BaseActivity: AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setupComponent(FriendsApplication.get(this).getAppComponent())
     }
 
     abstract fun setupComponent(applicationComponent: ApplicationComponent)
+
 }

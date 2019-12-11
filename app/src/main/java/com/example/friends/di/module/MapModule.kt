@@ -6,8 +6,5 @@ import dagger.Provides
 
 @Module
 class MapModule{
-    @Provides
-    fun provideMainActivity(): MapActivity {
-        return MapActivity()
-    }
+    @Provides fun provideMainActivity()= MapActivity()
 }

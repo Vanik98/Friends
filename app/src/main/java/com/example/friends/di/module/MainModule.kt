@@ -12,21 +12,12 @@ import dagger.Provides
 @Module
 class MainModule
 {
-    @Provides
-    fun provideMainActivity(): MainActivity {
-        return MainActivity()
-    }
-    @Provides
-    fun provideMainUI(): MainActivityUI {
-        return MainActivityUI()
-    }
-    @Provides
-    fun provideMainPresenter(mainModel: MainScreenContract.MainModel): MainScreenContract.MainPresenter {
-        return MainPresenter(mainModel)
-    }
-    @Provides
-    fun provideMainModel(firebase: MyFirebase, msPref: MySheradPreferans): MainScreenContract.MainModel {
-        return MainModel(firebase,msPref)
-    }
+    @Provides fun provideMainActivity()= MainActivity()
 
+    @Provides fun provideMainUI()= MainActivityUI()
+
+    @Provides fun provideMainPresenter(mainModel: MainScreenContract.MainModel)= MainPresenter(mainModel)
+
+    @Provides fun provideMainModel(firebase: MyFirebase, msPref: MySheradPreferans)= MainModel(firebase,msPref)
 }
+
