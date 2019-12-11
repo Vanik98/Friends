@@ -10,10 +10,5 @@ import javax.inject.Singleton
 class ApplicationModule(
     private val application: FriendsApplication
 ) {
-    @Provides
-    @Singleton
-    fun provideApplication(): Application {
-        return application
-    }
-
+    @Provides @Singleton fun provideApplication() = application
 }

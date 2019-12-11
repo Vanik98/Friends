@@ -5,8 +5,8 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class ActivityModule (
-    private val baseActivity:BaseActivity
+open class BaseActivityModule(
+    private val activity: BaseActivity
 ) {
-    @Provides fun provideActivity() = baseActivity
+    @Provides fun provideBaseActivity() = activity
 }

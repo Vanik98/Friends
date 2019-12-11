@@ -4,13 +4,15 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.friends.base.BaseActivity
+import com.example.friends.mainactivty.MainActivity
 import com.example.friends.savedata.MySheradPreferans
 import dagger.Module
 import dagger.Provides
 @Module
-class SaveDataModule {
+class SaveDataModule
+{
     @Provides
-    fun provideSharedPreferences(activity:BaseActivity): SharedPreferences {
+    fun provideSharedPreferences(activity: BaseActivity): SharedPreferences {
         return  activity.getSharedPreferences("save", Context.MODE_PRIVATE)
     }
 

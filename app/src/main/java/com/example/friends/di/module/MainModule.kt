@@ -13,6 +13,10 @@ import dagger.Provides
 class MainModule
 {
     @Provides
+    fun provideMainActivity(): MainActivity {
+        return MainActivity()
+    }
+    @Provides
     fun provideMainUI(): MainActivityUI {
         return MainActivityUI()
     }

@@ -3,6 +3,7 @@ package com.example.friends.firebase
 import android.app.Activity
 import android.content.ContentValues.TAG
 import android.util.Log
+import com.example.friends.base.BaseActivity
 import com.example.friends.mainactivty.MainScreenContract
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
@@ -10,7 +11,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class MyFirebase @Inject constructor(
-      var activity : Activity
+      var activity : BaseActivity
 ) {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var verificationID: String

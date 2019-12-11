@@ -8,7 +8,7 @@ import com.example.friends.R
 import com.example.friends.base.BaseActivity
 import com.example.friends.di.component.ApplicationComponent
 import com.example.friends.di.component.DaggerActivityComponent
-import com.example.friends.di.module.ActivityModule
+import com.example.friends.di.module.BaseActivityModule
 import com.example.friends.di.module.FirbaseModule
 import com.example.friends.di.module.MainModule
 import com.example.friends.di.module.SaveDataModule
@@ -27,7 +27,7 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
     override fun setupComponent(applicationComponent: ApplicationComponent) {
         DaggerActivityComponent.builder()
             .applicationComponent(applicationComponent)
-            .activityModule(ActivityModule(this))
+            .baseActivityModule(BaseActivityModule(this))
             .mainModule(MainModule())
             .firbaseModule(FirbaseModule())
             .saveDataModule(SaveDataModule())
