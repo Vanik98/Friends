@@ -28,7 +28,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.navigation.NavigationView
 
-class MapsActivity : BaseActivity(), OnMapReadyCallback {
+class MapActivity : BaseActivity(), OnMapReadyCallback {
 
     override fun setupComponent(applicationComponent: ApplicationComponent) {
         DaggerActivityComponent.builder()

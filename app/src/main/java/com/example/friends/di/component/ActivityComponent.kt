@@ -3,7 +3,7 @@ package com.example.friends.di.component
 import com.example.friends.di.*
 import com.example.friends.di.module.*
 import com.example.friends.mainactivty.MainActivity
-import com.example.friends.mapactivty.MapsActivity
+import com.example.friends.mapactivty.MapActivity
 import dagger.Component
 
 @ActivityScope
@@ -13,5 +13,5 @@ import dagger.Component
 )
 interface ActivityComponent {
     fun inject(activity: MainActivity)
-    fun inject(activity: MapsActivity)
+    fun inject(activity: MapActivity)
 }

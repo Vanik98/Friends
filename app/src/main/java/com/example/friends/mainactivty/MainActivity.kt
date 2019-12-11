@@ -12,7 +12,7 @@ import com.example.friends.di.module.BaseActivityModule
 import com.example.friends.di.module.FirbaseModule
 import com.example.friends.di.module.MainModule
 import com.example.friends.di.module.SaveDataModule
-import com.example.friends.mapactivty.MapsActivity
+import com.example.friends.mapactivty.MapActivity
 import com.example.friends.ui.DialogRegistrationUi
 import com.example.friends.ui.MainActivityUI
 import org.jetbrains.anko.AnkoContext
@@ -89,7 +89,7 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
     }
 
     override fun openMapActivity(accountId:String) {
-        val intent = Intent(this,MapsActivity::class.java)
+        val intent = Intent(this,MapActivity::class.java)
         intent.putExtra("accountId",accountId)
         startActivity(intent)
 
