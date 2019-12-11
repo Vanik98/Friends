@@ -22,7 +22,7 @@ import org.jetbrains.anko.setContentView
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(),MainScreenContract.MainView {
+class MainActivity : BaseActivity(),MainContract.MainView {
 
     override fun setupComponent(applicationComponent: ApplicationComponent) {
         DaggerActivityComponent.builder()
@@ -36,7 +36,7 @@ class MainActivity : BaseActivity(),MainScreenContract.MainView {
     }
 
     @Inject lateinit var ui:MainActivityUI
-    @Inject lateinit var presenter :MainScreenContract.MainPresenter
+    @Inject lateinit var presenter :MainContract.MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -2,7 +2,7 @@ package com.example.friends.mainactivty
 
 import com.example.friends.base.BaseContract
 
-interface MainScreenContract {
+interface MainContract {
 
     interface MainView : BaseContract.View {
 

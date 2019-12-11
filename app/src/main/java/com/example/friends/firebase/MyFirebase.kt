@@ -1,10 +1,9 @@
 package com.example.friends.firebase
 
-import android.app.Activity
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.friends.base.BaseActivity
-import com.example.friends.mainactivty.MainScreenContract
+import com.example.friends.mainactivty.MainContract
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import java.util.concurrent.TimeUnit
@@ -19,7 +18,7 @@ class MyFirebase @Inject constructor(
 
     fun sendVerificationCode(
         phoneNumber: String,
-        onFinishedListener: MainScreenContract.MainModel.OnFinishedListener
+        onFinishedListener: MainContract.MainModel.OnFinishedListener
     ) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             phoneNumber,
@@ -53,7 +52,7 @@ class MyFirebase @Inject constructor(
 
     fun verifySignInCode(
         code: String,
-        onFinishedListener: MainScreenContract.MainModel.OnFinishedListener
+        onFinishedListener: MainContract.MainModel.OnFinishedListener
     ) {
         val credential = PhoneAuthProvider.getCredential(verificationID!!, code)
         signInWithPhoneAuthCrendential(credential, onFinishedListener)
@@ -61,7 +60,7 @@ class MyFirebase @Inject constructor(
 
     fun signInWithPhoneAuthCrendential(
         credential: AuthCredential,
-        onFinishedListener: MainScreenContract.MainModel.OnFinishedListener
+        onFinishedListener: MainContract.MainModel.OnFinishedListener
     ) {
         mAuth = FirebaseAuth.getInstance()
         mAuth.signInWithCredential(credential)

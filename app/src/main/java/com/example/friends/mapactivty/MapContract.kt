@@ -3,7 +3,7 @@ package com.example.friends.mapactivty
 import com.example.friends.base.BaseContract
 import com.example.friends.entity.Friends
 
-interface MapActivtyContract {
+interface MapContract {
     interface MapView : BaseContract.View {
     }
 

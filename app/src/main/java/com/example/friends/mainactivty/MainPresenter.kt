@@ -3,14 +3,14 @@ package com.example.friends.mainactivty
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
-    var mainModel: MainScreenContract.MainModel
-) : MainScreenContract.MainPresenter {
+    var mainModel: MainContract.MainModel
+) : MainContract.MainPresenter {
 
-    private lateinit var view: MainScreenContract.MainView
+    private lateinit var view: MainContract.MainView
 
     override fun createAccount(phoneNumber: String) {
         mainModel.createAccount(phoneNumber,
-            object:MainScreenContract.MainModel.OnFinishedListener{
+            object:MainContract.MainModel.OnFinishedListener{
                 override fun onFinished(message: String) {
                     mainModel.saveAnyUser(true)
                     if (message == "created")
@@ -30,7 +30,7 @@ class MainPresenter @Inject constructor(
     }
 
     override fun checkVerificationCode(verificationCode: String){
-        mainModel.checkVerificationCode(verificationCode,object :MainScreenContract.MainModel.OnFinishedListener{
+        mainModel.checkVerificationCode(verificationCode,object :MainContract.MainModel.OnFinishedListener{
             override fun onFinished(message: String) {
                 verificationMessage(true)
 
@@ -62,7 +62,7 @@ class MainPresenter @Inject constructor(
 
     }
 
-    override  fun attach(view: MainScreenContract.MainView) {
+    override  fun attach(view: MainContract.MainView) {
         this.view = view
         if(mainModel.isSaveAnyUser()){
             view.openMapActivity("")
