@@ -19,6 +19,7 @@ import com.example.friends.di.module.BaseActivityModule
 import com.example.friends.di.module.FirbaseModule
 import com.example.friends.di.module.MapModule
 import com.example.friends.di.module.SaveDataModule
+import com.example.friends.entity.User
 import com.example.friends.mainactivty.MainActivity
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -58,6 +59,8 @@ class MapActivity : BaseActivity(), MapContract.MapView,OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         presenter.attach(this)
+        val accountId = intent.getStringExtra("accountId")
+        presenter.loadData(accountId)
         setMap()
     }
 
@@ -84,9 +87,10 @@ class MapActivity : BaseActivity(), MapContract.MapView,OnMapReadyCallback {
 
     }
 
-    private fun showUserInformation(){
-        val accountId = intent.getStringExtra("accountId")
-        presenter.loadData(accountId)
+    override fun showUserInformation(user: User) {
+        if (user != null){
+            val firends = user.friends
+        }
     }
 
     private fun setMap(){

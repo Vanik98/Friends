@@ -3,6 +3,9 @@ package com.example.friends.firebase
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.friends.base.BaseActivity
+import com.example.friends.entity.Friends
+import com.example.friends.entity.Geolocation
+import com.example.friends.entity.User
 import com.example.friends.mainactivty.MainContract
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
@@ -77,6 +80,9 @@ class MyFirebase @Inject constructor(
                     }
                 }
             }
+    }
+    fun getUser():User{
+        return User("","","",1, Geolocation(), Friends())
     }
 
 

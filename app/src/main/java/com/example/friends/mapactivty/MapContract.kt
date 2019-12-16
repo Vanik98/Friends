@@ -2,24 +2,26 @@ package com.example.friends.mapactivty
 
 import com.example.friends.base.BaseContract
 import com.example.friends.entity.Friends
+import com.example.friends.entity.User
 
 interface MapContract {
     interface MapView : BaseContract.View {
+        fun showUserInformation(user:User)
     }
 
     interface MapPresenter : BaseContract.Presenter<MapView> {
-        fun loadData(accountId:String):List<Friends>
+        fun loadData(accountId:String)
     }
 
     interface MapModel : BaseContract.Model{
 
         interface OnFinishedListener {
 
-            fun onFinished()
+            fun onFinished(user:User)
 
             fun onFailure(t: Throwable)
 
         }
-        fun getFriends(accountId:String):List<Friends>
+        fun getUser(accountId:String,onFinishedListener: OnFinishedListener):User
     }
 }
