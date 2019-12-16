@@ -1,16 +1,26 @@
 package com.example.friends.mapactivty
 
 import com.example.friends.entity.Friends
+import com.example.friends.entity.User
 import javax.inject.Inject
 
 class MapPresenter @Inject constructor(
-    var mapModel: MapContract.MapModel
+    var model: MapContract.MapModel
 ):MapContract.MapPresenter{
 
     private lateinit var view: MapContract.MapView
 
-    override fun loadData(accountId: String): List<Friends> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun loadData(accountId: String) {
+        model.getUser(accountId,object :MapContract.MapModel.OnFinishedListener{
+           override fun onFinished(user: User) {
+               view.showUserInformation(user)
+           }
+
+           override fun onFailure(t: Throwable) {
+
+           }
+
+       })
     }
 
     override fun subscribe() {
