@@ -7,11 +7,11 @@ interface MapContract {
     interface MapView : BaseContract.View {
     }
 
-    interface MainPresenter : BaseContract.Presenter<MapView> {
+    interface MapPresenter : BaseContract.Presenter<MapView> {
         fun loadData(accountId:String):List<Friends>
     }
 
-    interface MainModel : BaseContract.Model{
+    interface MapModel : BaseContract.Model{
 
         interface OnFinishedListener {
 

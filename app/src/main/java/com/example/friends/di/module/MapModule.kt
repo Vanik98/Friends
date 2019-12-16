@@ -1,6 +1,7 @@
 package com.example.friends.di.module
 
 import com.example.friends.firebase.MyFirebase
+import com.example.friends.mainactivty.MainContract
 import com.example.friends.mapactivty.MapActivity
 import com.example.friends.mapactivty.MapContract
 import com.example.friends.mapactivty.MapModel
@@ -13,7 +14,7 @@ import dagger.Provides
 class MapModule{
     @Provides fun provideMainActivity()= MapActivity()
 
-//    @Provides fun provideMapPresenter(mapModel: MapContract.MainModel)= MapPresenter(mapModel)
-//
-//    @Provides fun provideMapModel(firebase: MyFirebase, msPref: MySheradPreferans)= MapModel(firebase,msPref)
+    @Provides fun provideMapPresenter(mapModel: MapContract.MapModel):MapContract.MapPresenter= MapPresenter(mapModel)
+
+    @Provides fun provideMapModel(firebase: MyFirebase):MapContract.MapModel= MapModel(firebase)
 }
