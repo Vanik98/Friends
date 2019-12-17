@@ -7,10 +7,12 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.esotericsoftware.minlog.Log.info
 import com.example.friends.R
 import com.example.friends.base.BaseActivity
 import com.example.friends.di.component.ApplicationComponent
@@ -31,8 +33,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.navigation.NavigationView
 import javax.inject.Inject
+import kotlin.math.log
 
-class MapActivity : BaseActivity(), MapContract.MapView,OnMapReadyCallback {
+class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
 
     override fun setupComponent(applicationComponent: ApplicationComponent) {
         DaggerActivityComponent.builder()
@@ -58,10 +61,11 @@ class MapActivity : BaseActivity(), MapContract.MapView,OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
+        setMap()
         presenter.attach(this)
         val accountId = intent.getStringExtra("accountId")
         presenter.loadData(accountId)
-        setMap()
+
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -78,9 +82,7 @@ class MapActivity : BaseActivity(), MapContract.MapView,OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-//        mMap.addMarker(otherGelolocation)
-
+        showGeolocation()
         if(ContextCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),1)
         }
@@ -92,20 +94,20 @@ class MapActivity : BaseActivity(), MapContract.MapView,OnMapReadyCallback {
             val firends = user.friends
         }
     }
-
     private fun setMap(){
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+    }
+    private fun showGeolocation(){
+//        myGelolocation = MarkerOptions().position(LatLng(40.1811, 44.5136)).title("Vanik")
+//        mMap.addMarker(myGelolocation)
         locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
         }
-
-        locationListener=object : LocationListener {
+        locationListener = object : LocationListener {
             override fun onLocationChanged(location: Location?) {
                 val latiude = location!!.latitude
                 val longitude = location!!.longitude
@@ -136,7 +138,7 @@ class MapActivity : BaseActivity(), MapContract.MapView,OnMapReadyCallback {
 
             }
         }
-        locationManager?.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, locationListener)
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, locationListener)
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0f, locationListener)
 
     }
