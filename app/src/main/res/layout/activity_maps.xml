@@ -15,8 +15,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#A0D7E5"
+        android:layout_height="40dp"
+        android:background="@color/colorToolBar"
         android:elevation="4dp"
         app:contentInsetEnd="0dp"
         app:contentInsetStart="0dp"
@@ -39,8 +39,11 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:itemBackground="@drawable/menu_item_color_change"
+        app:itemIconTint="@color/colorToolBar"
+        app:itemTextColor="@color/colorToolBar"
         app:headerLayout="@layout/headr"
         app:menu="@menu/drawer_menu"
+        android:background="@color/colorWhiteLight"
         />
 
 </androidx.drawerlayout.widget.DrawerLayout>
