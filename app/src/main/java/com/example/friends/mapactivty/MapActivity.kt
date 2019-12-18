@@ -63,9 +63,9 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         setMap()
-        setUpToolBar()
-        drawerLayout = findViewById(R.id.drawerlayout)
+        setupToolBar()
         navigationView = findViewById(R.id.navigation_menu)
+        //        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         presenter.attach(this)
         val accountId = intent.getStringExtra("accountId")
         presenter.loadData(accountId)
@@ -149,7 +149,7 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
 
     }
 
-    private fun setUpToolBar() {
+    private fun setupToolBar() {
         drawerLayout = findViewById(R.id.drawerlayout)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -157,5 +157,6 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, 0, 0)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
+//        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
     }
 }
