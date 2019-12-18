@@ -1,4 +1,4 @@
-package com.example.friends.ui
+package com.example.friends.anko
 
 import android.content.DialogInterface
 import android.view.Gravity

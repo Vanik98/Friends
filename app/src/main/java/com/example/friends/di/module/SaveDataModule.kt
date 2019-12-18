@@ -3,7 +3,7 @@ package com.example.friends.di.module
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.friends.base.BaseActivity
-import com.example.friends.savedata.MySheradPreferans
+import com.example.friends.data.prefs.MySheradPreferans
 import dagger.Module
 import dagger.Provides
 @Module

@@ -1,4 +1,4 @@
-package com.example.friends.activitysettings
+package com.example.friends.settings
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,12 +1,12 @@
-package com.example.friends.firebase
+package com.example.friends.data.firebase
 
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.friends.base.BaseActivity
-import com.example.friends.entity.Friends
-import com.example.friends.entity.Geolocation
-import com.example.friends.entity.User
-import com.example.friends.activtymain.MainContract
+import com.example.friends.data.model.Friends
+import com.example.friends.data.model.Geolocation
+import com.example.friends.data.model.User
+import com.example.friends.main.MainContract
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import java.util.concurrent.TimeUnit

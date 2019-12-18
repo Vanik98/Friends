@@ -2,8 +2,8 @@ package com.example.friends.di.component
 
 import com.example.friends.di.*
 import com.example.friends.di.module.*
-import com.example.friends.activtymain.MainActivity
-import com.example.friends.activtymap.MapActivity
+import com.example.friends.main.MainActivity
+import com.example.friends.map.MapActivity
 import dagger.Component
 
 @ActivityScope

@@ -1,7 +1,7 @@
-package com.example.friends.activtymain
+package com.example.friends.main
 
-import com.example.friends.firebase.MyFirebase
-import com.example.friends.savedata.MySheradPreferans
+import com.example.friends.data.firebase.MyFirebase
+import com.example.friends.data.prefs.MySheradPreferans
 import javax.inject.Inject
 
 class MainModel @Inject constructor(

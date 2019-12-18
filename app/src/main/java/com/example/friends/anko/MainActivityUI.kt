@@ -1,4 +1,4 @@
-package com.example.friends.ui
+package com.example.friends.anko
 
 import android.annotation.TargetApi
 import android.os.Build
@@ -11,7 +11,7 @@ import android.widget.EditText
 
 import androidx.core.content.res.ResourcesCompat
 import com.example.friends.R
-import com.example.friends.activtymain.MainActivity
+import com.example.friends.main.MainActivity
 import org.jetbrains.anko.*
  class MainActivityUI : AnkoComponent<MainActivity> {
 

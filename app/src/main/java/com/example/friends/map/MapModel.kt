@@ -1,7 +1,7 @@
-package com.example.friends.activtymap
+package com.example.friends.map
 
-import com.example.friends.entity.User
-import com.example.friends.firebase.MyFirebase
+import com.example.friends.data.model.User
+import com.example.friends.data.firebase.MyFirebase
 import javax.inject.Inject
 
 class MapModel @Inject constructor(

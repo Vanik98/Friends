@@ -18,20 +18,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".activityfriends.FriendsActivity"
+            android:name=".friends.FriendsActivity"
             android:label="@string/title_activity_friends"
             android:theme="@style/NoActionBar"></activity>
-        <activity android:name=".activitysettings.SettingsActivity" />
+        <activity android:name=".settings.SettingsActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".activtymap.MapActivity"
+            android:name=".map.MapActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".activtymain.MainActivity"
+            android:name=".main.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

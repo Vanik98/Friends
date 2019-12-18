@@ -1,4 +1,4 @@
-package com.example.friends.activtymain
+package com.example.friends.main
 
 import android.content.Context
 import android.content.Intent
@@ -12,9 +12,9 @@ import com.example.friends.di.module.BaseActivityModule
 import com.example.friends.di.module.FirbaseModule
 import com.example.friends.di.module.MainModule
 import com.example.friends.di.module.SaveDataModule
-import com.example.friends.activtymap.MapActivity
-import com.example.friends.ui.DialogRegistrationUi
-import com.example.friends.ui.MainActivityUI
+import com.example.friends.map.MapActivity
+import com.example.friends.anko.DialogRegistrationUi
+import com.example.friends.anko.MainActivityUI
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.sdk25.coroutines.onClick

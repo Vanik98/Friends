@@ -1,4 +1,4 @@
-package com.example.friends.activtymap
+package com.example.friends.map
 
 import android.Manifest
 import android.content.Context
@@ -19,9 +19,9 @@ import com.example.friends.di.component.DaggerActivityComponent
 import com.example.friends.di.module.BaseActivityModule
 import com.example.friends.di.module.FirbaseModule
 import com.example.friends.di.module.MapModule
-import com.example.friends.entity.User
-import com.example.friends.activityfriends.FriendsActivity
-import com.example.friends.activitysettings.SettingsActivity
+import com.example.friends.data.model.User
+import com.example.friends.friends.FriendsActivity
+import com.example.friends.settings.SettingsActivity
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

@@ -1,4 +1,4 @@
-package com.example.friends.savedata
+package com.example.friends.data.prefs
 
 import android.content.SharedPreferences
 import android.util.Log

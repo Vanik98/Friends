@@ -1,7 +1,7 @@
-package com.example.friends.activtymap
+package com.example.friends.map
 
 import com.example.friends.base.BaseContract
-import com.example.friends.entity.User
+import com.example.friends.data.model.User
 
 interface MapContract {
     interface MapView : BaseContract.View {

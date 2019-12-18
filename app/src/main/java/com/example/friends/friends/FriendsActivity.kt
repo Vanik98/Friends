@@ -1,4 +1,4 @@
-package com.example.friends.activityfriends
+package com.example.friends.friends
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
