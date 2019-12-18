@@ -1,4 +1,4 @@
-package com.example.friends.mainactivty
+package com.example.friends.activtymain
 
 import com.example.friends.firebase.MyFirebase
 import com.example.friends.savedata.MySheradPreferans

@@ -1,12 +1,10 @@
 package com.example.friends.di.module
 
 import com.example.friends.firebase.MyFirebase
-import com.example.friends.mainactivty.MainContract
-import com.example.friends.mapactivty.MapActivity
-import com.example.friends.mapactivty.MapContract
-import com.example.friends.mapactivty.MapModel
-import com.example.friends.mapactivty.MapPresenter
-import com.example.friends.savedata.MySheradPreferans
+import com.example.friends.activtymap.MapActivity
+import com.example.friends.activtymap.MapContract
+import com.example.friends.activtymap.MapModel
+import com.example.friends.activtymap.MapPresenter
 import dagger.Module
 import dagger.Provides
 

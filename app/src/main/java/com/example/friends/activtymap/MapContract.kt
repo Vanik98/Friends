@@ -1,7 +1,6 @@
-package com.example.friends.mapactivty
+package com.example.friends.activtymap
 
 import com.example.friends.base.BaseContract
-import com.example.friends.entity.Friends
 import com.example.friends.entity.User
 
 interface MapContract {

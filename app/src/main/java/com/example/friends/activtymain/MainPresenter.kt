@@ -1,4 +1,4 @@
-package com.example.friends.mainactivty
+package com.example.friends.activtymain
 
 import javax.inject.Inject
 

@@ -1,6 +1,5 @@
-package com.example.friends.mapactivty
+package com.example.friends.activtymap
 
-import com.example.friends.entity.Friends
 import com.example.friends.entity.User
 import com.example.friends.firebase.MyFirebase
 import javax.inject.Inject

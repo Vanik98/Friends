@@ -1,19 +1,17 @@
-package com.example.friends.mapactivty
+package com.example.friends.activtymap
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.esotericsoftware.minlog.Log.info
 import com.example.friends.R
 import com.example.friends.base.BaseActivity
 import com.example.friends.di.component.ApplicationComponent
@@ -21,9 +19,9 @@ import com.example.friends.di.component.DaggerActivityComponent
 import com.example.friends.di.module.BaseActivityModule
 import com.example.friends.di.module.FirbaseModule
 import com.example.friends.di.module.MapModule
-import com.example.friends.di.module.SaveDataModule
 import com.example.friends.entity.User
-import com.example.friends.mainactivty.MainActivity
+import com.example.friends.activityfriends.FriendsActivity
+import com.example.friends.activitysettings.SettingsActivity
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -34,7 +32,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.navigation.NavigationView
 import javax.inject.Inject
-import kotlin.math.log
 
 class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
 
@@ -144,8 +141,8 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
 
             }
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, locationListener)
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0f, locationListener)
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100000, 20f, locationListener)
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 100000, 20f, locationListener)
 
     }
 
@@ -158,5 +155,16 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
 //        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+    }
+
+    private fun setNavigationViewListener(){
+        navigationView.setNavigationItemSelectedListener {
+             when(it.itemId) {
+                 R.id.nav_map -> {}
+                 R.id.nav_friends -> startActivity(Intent(this, FriendsActivity::class.java))
+                 R.id.nav_friends -> startActivity(Intent(this, SettingsActivity::class.java))
+             }
+             true
+        }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.friends.ui
 
 import android.annotation.TargetApi
-import android.app.Dialog
 import android.os.Build
 import android.text.InputFilter
 import android.text.InputType
@@ -9,12 +8,10 @@ import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.get
 import com.example.friends.R
-import com.example.friends.mainactivty.MainActivity
+import com.example.friends.activtymain.MainActivity
 import org.jetbrains.anko.*
  class MainActivityUI : AnkoComponent<MainActivity> {
 
