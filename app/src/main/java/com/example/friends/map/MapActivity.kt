@@ -60,7 +60,7 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         setMap()
-        setupToolBar()
+        setToolBar()
         navigationView = findViewById(R.id.navigation_menu)
         //        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         presenter.attach(this)
@@ -146,7 +146,7 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
 
     }
 
-    private fun setupToolBar() {
+    private fun setToolBar() {
         drawerLayout = findViewById(R.id.drawerlayout)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)

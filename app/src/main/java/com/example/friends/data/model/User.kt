@@ -4,7 +4,8 @@ class User(
     val id: String,
     val name: String,
     val surname: String?,
-    val phone: Int? = 0,
+    val phone: Int,
     val geolocation: Geolocation?,
+    val accountImage:AccountImage?,
     val friends: Friends
 )
