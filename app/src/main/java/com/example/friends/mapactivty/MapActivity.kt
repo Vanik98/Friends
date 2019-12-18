@@ -9,6 +9,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toolbar
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -56,12 +57,15 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
 
     private lateinit var navigationView: NavigationView
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var toolbar: Toolbar
-
+    private lateinit var toolbar: androidx.appcompat.widget.Toolbar
+    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
         setMap()
+        setUpToolBar()
+        drawerLayout = findViewById(R.id.drawerlayout)
+        navigationView = findViewById(R.id.navigation_menu)
         presenter.attach(this)
         val accountId = intent.getStringExtra("accountId")
         presenter.loadData(accountId)
@@ -94,10 +98,12 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
             val firends = user.friends
         }
     }
+
     private fun setMap(){
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
+
     private fun showGeolocation(){
 //        myGelolocation = MarkerOptions().position(LatLng(40.1811, 44.5136)).title("Vanik")
 //        mMap.addMarker(myGelolocation)
@@ -141,5 +147,15 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, locationListener)
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0f, locationListener)
 
+    }
+
+    private fun setUpToolBar() {
+        drawerLayout = findViewById(R.id.drawerlayout)
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, 0, 0)
+        drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        actionBarDrawerToggle.syncState()
     }
 }
