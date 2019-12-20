@@ -10,6 +10,6 @@ class MapModel @Inject constructor(
     override fun getUser(
         accountId: String,
         onFinishedListener: MapContract.MapModel.OnFinishedListener
-    ): User = firebase.getUser(accountId,onFinishedListener)
+    ) = firebase.getUser(accountId,onFinishedListener)
 
 }

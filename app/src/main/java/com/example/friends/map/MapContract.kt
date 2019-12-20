@@ -21,6 +21,6 @@ interface MapContract {
             fun onFailure(t: Throwable)
 
         }
-        fun getUser(accountId:String,onFinishedListener: OnFinishedListener):User
+        fun getUser(accountId:String,onFinishedListener: OnFinishedListener)
     }
 }

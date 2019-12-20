@@ -12,8 +12,7 @@ import com.example.friends.map.MapContract
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
@@ -90,20 +89,29 @@ class MyFirebase @Inject constructor(
                 }
             }
     }
-    fun getUser(accountId:String,onFinishedListener: MapContract.MapModel.OnFinishedListener):User{
+    fun getUser(accountId:String,onFinishedListener: MapContract.MapModel.OnFinishedListener){
+         var user:User
+        databaseReference = FirebaseDatabase.getInstance().getReference("users/$accountId")
+        databaseReference.addValueEventListener(object :ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
 
-        return User("","","",1, Geolocation(),null,Friends())
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (postSnapshot in dataSnapshot.children) {
+                    user = postSnapshot.getValue(User::class.java)!!
+                    onFinishedListener.onFinished(user)
+                }
+            }
+        })
     }
     private fun addUser(user:User){
-        databaseReference = FirebaseDatabase.getInstance().getReference("user")
+        databaseReference = FirebaseDatabase.getInstance().getReference("user/${user.id}")
         storageReference = FirebaseStorage.getInstance().getReference("image")
-        val id = databaseReference.push().key
-        if(id !=null) {
-            val fileRef = storageReference.child("image/${System.currentTimeMillis()}+.${user.accountImage!!.extension}")
+            val fileRef = storageReference.child("image/${user.id}+.${user.accountImage!!.extension}")
             fileRef.putFile(user.accountImage!!.imageUri)
                 .addOnSuccessListener {
-                    val user = User(id, user.name, user.surname, user.phone, user.geolocation,user.accountImage,user.friends)
-                    databaseReference.child(id).setValue(user)
+                    databaseReference.child(user.id).setValue(user)
                 }
                 .addOnFailureListener{
                     Log.i("vvv",it.message)
@@ -112,7 +120,6 @@ class MyFirebase @Inject constructor(
 
                 }
         }
-    }
 
     fun addFriend(friendId:String){
         databaseReference = FirebaseDatabase.getInstance().getReference("user")
