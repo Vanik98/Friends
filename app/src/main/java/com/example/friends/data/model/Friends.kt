@@ -1,5 +1,5 @@
 package com.example.friends.data.model
 
 class Friends(
-//    var users: List<User>?
+    var usersId: List<Int>
 )

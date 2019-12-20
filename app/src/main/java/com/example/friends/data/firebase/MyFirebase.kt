@@ -1,7 +1,9 @@
 package com.example.friends.data.firebase
 
 import android.content.ContentValues.TAG
+import android.net.Uri
 import android.util.Log
+import com.example.friends.R
 import com.example.friends.base.BaseActivity
 import com.example.friends.data.model.AccountImage
 import com.example.friends.data.model.Friends
@@ -27,10 +29,8 @@ class MyFirebase @Inject constructor(
     private lateinit var message:String
     private lateinit var databaseReference:DatabaseReference
     private lateinit var storageReference:StorageReference
-    fun sendVerificationCode(
-        phoneNumber: String,
-        onFinishedListener: MainContract.MainModel.OnFinishedListener
-    ) {
+
+    fun sendVerificationCode(phoneNumber: String, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             phoneNumber,
             60,
@@ -61,18 +61,12 @@ class MyFirebase @Inject constructor(
         )
     }
 
-    fun verifySignInCode(
-        code: String,
-        onFinishedListener: MainContract.MainModel.OnFinishedListener
-    ) {
+    fun verifySignInCode(code: String, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
         val credential = PhoneAuthProvider.getCredential(verificationID!!, code)
         signInWithPhoneAuthCredential(credential, onFinishedListener)
     }
 
-    private fun signInWithPhoneAuthCredential(
-        credential: AuthCredential,
-        onFinishedListener: MainContract.MainModel.OnFinishedListener
-    ) {
+    private fun signInWithPhoneAuthCredential(credential: AuthCredential, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
         mAuth = FirebaseAuth.getInstance()
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(activity) { task ->
@@ -88,9 +82,10 @@ class MyFirebase @Inject constructor(
                 }
             }
     }
+
     fun getUser(accountId:String,onFinishedListener: MapContract.MapModel.OnFinishedListener){
          var user:User
-        databaseReference = FirebaseDatabase.getInstance().getReference("users/$accountId")
+        databaseReference = FirebaseDatabase.getInstance().getReference("users/")
         databaseReference.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -104,24 +99,30 @@ class MyFirebase @Inject constructor(
             }
         })
     }
+
     fun addUserInformation(user:User){
-        databaseReference = FirebaseDatabase.getInstance().getReference("user/${user.id}")
-        storageReference = FirebaseStorage.getInstance().getReference("image")
-            val fileRef = storageReference.child("image/${user.id}+.${user.accountImage!!.extension}")
-            fileRef.putFile(user.accountImage!!.imageUri)
+        databaseReference = FirebaseDatabase.getInstance().getReference("user/")
+        storageReference = FirebaseStorage.getInstance().getReference("image/")
+        val id = databaseReference.push().key
+        val imageUri: Uri = Uri.parse("content://media/external/images/media/32196")
+        val fileRef = storageReference.child("image/1")
+            fileRef.putFile(imageUri)
                 .addOnSuccessListener {
-                    databaseReference.child(user.id).setValue(user)
+                    if (id != null) {
+                        databaseReference.child(id).setValue(user)
+                    }
+                    Log.i("vvv","uraaaaaaaaaaa ashaxatumaaaaaaaaaaaaaaaaaa")
                 }
                 .addOnFailureListener{
-                    Log.i("vvv",it.message)
+                    Log.i("vvv","${it.message} aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
                 }
                 .addOnProgressListener {
-
+                    Log.i("vvv","uraaaaaaaaaaa ese chgitem xi")
                 }
         }
 
     fun addFriend(accountId:String,friendId:String){
-        databaseReference = FirebaseDatabase.getInstance().getReference("user/$accountId")
+        databaseReference = FirebaseDatabase.getInstance().getReference("user/")
         val userId = databaseReference.push().key
         userId?.let { databaseReference.child(it).setValue(friendId) }
     }

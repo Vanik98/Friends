@@ -9,9 +9,6 @@ class MainModel @Inject constructor(
     var firebase: MyFirebase,
     var msPref: MySheradPreferans
 ): MainContract.MainModel {
-    override fun addUserInformation(user: User) {
-        firebase.addUserInformation(user)
-    }
 
     override fun saveAnyUser(boolean: Boolean) {
         msPref.saveAnyUser(boolean)

@@ -1,7 +1,6 @@
 package com.example.friends.main
 
 import com.example.friends.base.BaseContract
-import com.example.friends.data.model.User
 
 interface MainContract {
 
@@ -24,8 +23,6 @@ interface MainContract {
 
         fun createAccount(phoneNumber:String)
 
-        fun addUserInformation(user: User)
-
     }
 
     interface MainModel : BaseContract.Model{
@@ -45,8 +42,6 @@ interface MainContract {
         fun saveAnyUser(boolean: Boolean)
 
         fun isSaveAnyUser():Boolean
-
-        fun addUserInformation(user: User)
     }
 
 }

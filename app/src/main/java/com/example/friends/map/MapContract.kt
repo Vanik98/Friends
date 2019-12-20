@@ -10,6 +10,7 @@ interface MapContract {
 
     interface MapPresenter : BaseContract.Presenter<MapView> {
         fun loadData(accountId:String)
+
     }
 
     interface MapModel : BaseContract.Model{
@@ -22,5 +23,7 @@ interface MapContract {
 
         }
         fun getUser(accountId:String,onFinishedListener: OnFinishedListener)
+
+        fun addUserInformation(user: User)
     }
 }

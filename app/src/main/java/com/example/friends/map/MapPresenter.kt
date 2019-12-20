@@ -1,5 +1,6 @@
 package com.example.friends.map
 
+import com.example.friends.data.model.Friends
 import com.example.friends.data.model.User
 import javax.inject.Inject
 
@@ -10,16 +11,16 @@ class MapPresenter @Inject constructor(
     private lateinit var view: MapContract.MapView
 
     override fun loadData(accountId: String) {
-        model.getUser(accountId,object :MapContract.MapModel.OnFinishedListener{
-           override fun onFinished(user: User) {
-               view.showUserInformation(user)
-           }
-
-           override fun onFailure(t: Throwable) {
-
-           }
-
-       })
+//        model.getUser(accountId,object :MapContract.MapModel.OnFinishedListener{
+//           override fun onFinished(user: User) {
+//               view.showUserInformation(user)
+//           }
+//
+//           override fun onFailure(t: Throwable) {
+//
+//           }
+//
+//       })
     }
 
     override fun subscribe() {
@@ -32,6 +33,10 @@ class MapPresenter @Inject constructor(
 
     override fun attach(view: MapContract.MapView) {
         this.view = view
+        val user = User("2","Vanik","Dallakyan",77835388,null,null, Friends(arrayListOf(1,2,3)))
+        model.addUserInformation(user)
     }
+
+
 
 }

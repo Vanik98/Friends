@@ -44,11 +44,6 @@ class MainPresenter @Inject constructor(
 
     }
 
-    override fun addUserInformation(user: User) {
-        mainModel.addUserInformation(user)
-    }
-
-
     private fun accountCreatedMessage(isCreated:Boolean) {
         view.showMessageIsAccountCreated(isCreated)
     }
@@ -72,8 +67,6 @@ class MainPresenter @Inject constructor(
         this.view = view
         if(mainModel.isSaveAnyUser()){
             view.openMapActivity("")
-//            val user = User("1","Vanik","Dallakyan",77835388,null,null,null)
-//            addUserInformation(user)
         }
     }
 }
