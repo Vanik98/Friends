@@ -72,8 +72,8 @@ class MainPresenter @Inject constructor(
         this.view = view
         if(mainModel.isSaveAnyUser()){
             view.openMapActivity("")
-//            val user =User("")
-//            addUserInformation(user = )
+//            val user = User("1","Vanik","Dallakyan",77835388,null,null,null)
+//            addUserInformation(user)
         }
     }
 }

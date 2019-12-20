@@ -7,5 +7,5 @@ class User(
     val phone: Int,
     val geolocation: Geolocation?,
     val accountImage:AccountImage?,
-    val friends: Friends
+    val friends: Friends?
 )
