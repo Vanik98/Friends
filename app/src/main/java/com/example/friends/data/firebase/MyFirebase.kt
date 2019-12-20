@@ -99,28 +99,25 @@ class MyFirebase @Inject constructor(
         storageReference = FirebaseStorage.getInstance().getReference("image")
         val id = databaseReference.push().key
         if(id !=null) {
-            user.accountImage?.let {uploadImage(it)}
-            val user = User(id, user.name, user.surname, user.phone, user.geolocation,user.accountImage,user.friends)
-            databaseReference.child(id).setValue(user)
+            val fileRef = storageReference.child("image/${System.currentTimeMillis()}+.${user.accountImage!!.extension}")
+            fileRef.putFile(user.accountImage!!.imageUri)
+                .addOnSuccessListener {
+                    val user = User(id, user.name, user.surname, user.phone, user.geolocation,user.accountImage,user.friends)
+                    databaseReference.child(id).setValue(user)
+                }
+                .addOnFailureListener{
+                    Log.i("vvv",it.message)
+                }
+                .addOnProgressListener {
 
+                }
         }
     }
-    private fun uploadImage(image:AccountImage){
-        val fileRef = storageReference.child("image/${System.currentTimeMillis()}+.${image.extension}")
-        fileRef.putFile(image.imageUri)
-            .addOnSuccessListener {
 
-            }
-            .addOnFailureListener{
-                Log.i("vvv",it.message)
-            }
-            .addOnProgressListener {
-
-            }
-    }
-    fun addFriend(){
+    fun addFriend(friendId:String){
         databaseReference = FirebaseDatabase.getInstance().getReference("user")
+        val userId = databaseReference.push().key
+        userId?.let { databaseReference.child(it).setValue(friendId) }
     }
-
 }
 
