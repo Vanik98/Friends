@@ -1,5 +1,6 @@
 package com.example.friends.main
 
+import com.example.friends.data.model.User
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
@@ -43,6 +44,11 @@ class MainPresenter @Inject constructor(
 
     }
 
+    override fun addUserInformation(user: User) {
+        mainModel.addUserInformation(user)
+    }
+
+
     private fun accountCreatedMessage(isCreated:Boolean) {
         view.showMessageIsAccountCreated(isCreated)
     }
@@ -66,6 +72,8 @@ class MainPresenter @Inject constructor(
         this.view = view
         if(mainModel.isSaveAnyUser()){
             view.openMapActivity("")
+//            val user =User("")
+//            addUserInformation(user = )
         }
     }
 }

@@ -84,7 +84,6 @@ class MyFirebase @Inject constructor(
                     Log.i("vvv", "signInWithCredential:failure", task.exception)
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         onFinishedListener.onFailure(task.exception as FirebaseAuthInvalidCredentialsException)
-
                     }
                 }
             }
@@ -105,7 +104,7 @@ class MyFirebase @Inject constructor(
             }
         })
     }
-    private fun addUser(user:User){
+    fun addUserInformation(user:User){
         databaseReference = FirebaseDatabase.getInstance().getReference("user/${user.id}")
         storageReference = FirebaseStorage.getInstance().getReference("image")
             val fileRef = storageReference.child("image/${user.id}+.${user.accountImage!!.extension}")
@@ -121,8 +120,8 @@ class MyFirebase @Inject constructor(
                 }
         }
 
-    fun addFriend(friendId:String){
-        databaseReference = FirebaseDatabase.getInstance().getReference("user")
+    fun addFriend(accountId:String,friendId:String){
+        databaseReference = FirebaseDatabase.getInstance().getReference("user/$accountId")
         val userId = databaseReference.push().key
         userId?.let { databaseReference.child(it).setValue(friendId) }
     }

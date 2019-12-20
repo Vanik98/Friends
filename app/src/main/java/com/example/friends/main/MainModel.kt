@@ -1,6 +1,7 @@
 package com.example.friends.main
 
 import com.example.friends.data.firebase.MyFirebase
+import com.example.friends.data.model.User
 import com.example.friends.data.prefs.MySheradPreferans
 import javax.inject.Inject
 
@@ -8,6 +9,10 @@ class MainModel @Inject constructor(
     var firebase: MyFirebase,
     var msPref: MySheradPreferans
 ): MainContract.MainModel {
+    override fun addUserInformation(user: User) {
+        firebase.addUserInformation(user)
+    }
+
     override fun saveAnyUser(boolean: Boolean) {
         msPref.saveAnyUser(boolean)
     }
