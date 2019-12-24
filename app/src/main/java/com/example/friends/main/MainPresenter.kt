@@ -24,17 +24,44 @@ class MainPresenter @Inject constructor(
                         accountCreatedMessage(true)
                     }
                 }
+
+                override fun onProgress() {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
                 override fun onFailure(t: Throwable) {
                     accountCreatedMessage(false)
                 }
             })
     }
 
+    private fun addUserInformation() {
+        val user : User = view.takeUserInformation()
+        mainModel.addUserInformation(user,object : MainContract.MainModel.OnFinishedListener{
+            override fun onFinished(message: String) {
+                verificationMessage(true)
+            }
+
+            override fun onProgress() {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onFailure(t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
+
+    }
+
     override fun checkVerificationCode(verificationCode: String){
         mainModel.checkVerificationCode(verificationCode,object :MainContract.MainModel.OnFinishedListener{
             override fun onFinished(message: String) {
-                verificationMessage(true)
+                addUserInformation()
+            }
 
+            override fun onProgress() {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onFailure(t: Throwable) {

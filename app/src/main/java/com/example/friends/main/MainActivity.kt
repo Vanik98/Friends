@@ -15,6 +15,7 @@ import com.example.friends.di.module.SaveDataModule
 import com.example.friends.map.MapActivity
 import com.example.friends.anko.DialogRegistrationUi
 import com.example.friends.anko.MainActivityUI
+import com.example.friends.data.model.User
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -95,8 +96,20 @@ class MainActivity : BaseActivity(),MainContract.MainView {
 
     }
 
+    override fun takeUserInformation(): User {
+        val id = System.currentTimeMillis().toString()
+        val name = ui.name.toString()
+        val sname = ui.sname.toString()
+        val phone = ui.phoneNumber.toString()
+        val geolocation = null
+        val friends = null
+        val image = null
+        return User(id,name,sname,phone,geolocation,friends,image)
+    }
+
+
     private fun openVerificationDialog(context:Context) {
-        ui.create_account.onClick {
+        ui.createAccount.onClick {
             val phoneNumber = ui.phoneNumber.text.toString()
             if(phoneNumber.isNotEmpty() && phoneNumber.length < 10 ) {
                 presenter.createAccount("${ui.numberCode.text.toString()}${ui.phoneNumber.text.toString()}")

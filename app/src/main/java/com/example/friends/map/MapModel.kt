@@ -12,8 +12,4 @@ class MapModel @Inject constructor(
     override fun getUser(accountId: String, onFinishedListener: MapContract.MapModel.OnFinishedListener)
             = firebase.getUser(accountId,onFinishedListener)
 
-    override fun addUserInformation(user: User) {
-        firebase.addUserInformation(user)
-    }
-
 }

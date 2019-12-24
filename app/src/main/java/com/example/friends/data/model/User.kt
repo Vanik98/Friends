@@ -4,7 +4,7 @@ data class User(
     val id: String,
     val name: String,
     val surname: String?,
-    val phone: Int,
+    val phone: String,
     val geolocation: Geolocation?,
     val accountImage:AccountImage?,
     val friends: Friends?

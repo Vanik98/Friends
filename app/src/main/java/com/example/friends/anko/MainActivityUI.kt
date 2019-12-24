@@ -15,10 +15,13 @@ import com.example.friends.main.MainActivity
 import org.jetbrains.anko.*
  class MainActivityUI : AnkoComponent<MainActivity> {
 
-     lateinit var create_account:Button
+     lateinit var v: View
+     lateinit var createAccount:Button
      lateinit var phoneNumber:EditText
      lateinit var numberCode:EditText
-     lateinit var v: View
+     lateinit var name:EditText
+     lateinit var sname:EditText
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     override fun createView(ui: AnkoContext<MainActivity>) = with(ui) {
         verticalLayout {
@@ -34,12 +37,46 @@ import org.jetbrains.anko.*
                 leftMargin = dip(5)
                 rightMargin = dip(5)
             }
+            textView("Name") {
+                textSize = 15f
+                textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
+            }.lparams(width = wrapContent, height = wrapContent) {
+                topMargin = dip(15)
+                leftMargin = dip(5)
+                rightMargin = dip(5)
+            }
+            name = editText{
+                textSize = 18f
+                textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
+                backgroundColor = ResourcesCompat.getColor(resources, R.color.colorGrayLight, null)
+            }.lparams(width = matchParent, height = dip(45)) {
+                topMargin = dip(5)
+                leftMargin = dip(5)
+                rightMargin = dip(5)
+            }
+            textView("Surname") {
+                textSize = 15f
+                textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
+            }.lparams(width = wrapContent, height = wrapContent) {
+                topMargin = dip(5)
+                leftMargin = dip(5)
+                rightMargin = dip(5)
+            }
+            sname = editText{
+                textSize = 18f
+                textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
+                backgroundColor = ResourcesCompat.getColor(resources, R.color.colorGrayLight, null)
+            }.lparams(width = matchParent, height = dip(45)) {
+                topMargin = dip(5)
+                leftMargin = dip(5)
+                rightMargin = dip(5)
+            }
             linearLayout {
                 textView("Code:") {
                     textSize = 15f
                     textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
                 }.lparams(width = wrapContent, height = dip(20)) {
-                    topMargin = dip(50)
+                    topMargin = dip(5)
                     leftMargin = dip(5)
                     rightMargin = dip(5)
                 }
@@ -47,7 +84,7 @@ import org.jetbrains.anko.*
                     textSize = 15f
                     textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
                 }.lparams(width = wrapContent, height = dip(20)) {
-                    topMargin = dip(50)
+                    topMargin = dip(5)
                     leftMargin = dip(15)
                     rightMargin = dip(5)
                 }
@@ -77,7 +114,7 @@ import org.jetbrains.anko.*
                 }
 
             }
-                create_account = button("Create Account") {
+                createAccount = button("Create Account") {
                     background = ResourcesCompat.getDrawable(resources, R.drawable.button_color_change, null)
                     textColor = ResourcesCompat.getColor(resources, R.color.colorWhite, null)
 

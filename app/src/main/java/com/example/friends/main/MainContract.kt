@@ -1,6 +1,7 @@
 package com.example.friends.main
 
 import com.example.friends.base.BaseContract
+import com.example.friends.data.model.User
 
 interface MainContract {
 
@@ -15,6 +16,8 @@ interface MainContract {
         fun showMessageIsSignIn(isVerify:Boolean)
 
         fun openMapActivity(accountId:String)
+
+        fun takeUserInformation():User
     }
 
     interface MainPresenter : BaseContract.Presenter<MainView> {
@@ -31,6 +34,8 @@ interface MainContract {
 
             fun onFinished(message:String)
 
+            fun onProgress()
+
             fun onFailure(t: Throwable)
 
         }
@@ -42,6 +47,9 @@ interface MainContract {
         fun saveAnyUser(boolean: Boolean)
 
         fun isSaveAnyUser():Boolean
+
+        fun addUserInformation(user:User,onFinishedListener: OnFinishedListener)
+
     }
 
 }

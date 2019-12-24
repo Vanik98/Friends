@@ -100,7 +100,7 @@ class MyFirebase @Inject constructor(
         })
     }
 
-    fun addUserInformation(user:User){
+    fun addUserInformation(user:User,onFinishedListener: MainContract.MainModel.OnFinishedListener){
         databaseReference = FirebaseDatabase.getInstance().getReference("user/")
         storageReference = FirebaseStorage.getInstance().getReference("image/")
         val id = databaseReference.push().key
@@ -110,11 +110,11 @@ class MyFirebase @Inject constructor(
                 .addOnSuccessListener {
                     if (id != null) {
                         databaseReference.child(id).setValue(user)
+                        onFinishedListener.onFinished("")
                     }
-                    Log.i("vvv","uraaaaaaaaaaa ashaxatumaaaaaaaaaaaaaaaaaa")
                 }
                 .addOnFailureListener{
-                    Log.i("vvv","${it.message} aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                    onFinishedListener.onFinished("${it.message}")
                 }
                 .addOnProgressListener {
                     Log.i("vvv","uraaaaaaaaaaa ese chgitem xi")

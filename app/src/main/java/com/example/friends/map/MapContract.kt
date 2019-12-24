@@ -24,6 +24,5 @@ interface MapContract {
         }
         fun getUser(accountId:String,onFinishedListener: OnFinishedListener)
 
-        fun addUserInformation(user: User)
     }
 }

@@ -33,8 +33,7 @@ class MapPresenter @Inject constructor(
 
     override fun attach(view: MapContract.MapView) {
         this.view = view
-        val user = User("2","Vanik","Dallakyan",77835388,null,null, Friends(arrayListOf(1,2,3)))
-        model.addUserInformation(user)
+
     }
 
 
