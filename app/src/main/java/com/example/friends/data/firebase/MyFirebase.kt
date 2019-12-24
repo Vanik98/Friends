@@ -101,11 +101,11 @@ class MyFirebase @Inject constructor(
     }
 
     fun addUserInformation(user:User,onFinishedListener: MainContract.MainModel.OnFinishedListener){
-        databaseReference = FirebaseDatabase.getInstance().getReference("user/")
-        storageReference = FirebaseStorage.getInstance().getReference("image/")
+        databaseReference = FirebaseDatabase.getInstance().getReference("users/")
+        storageReference = FirebaseStorage.getInstance().getReference("images/")
         val id = databaseReference.push().key
         val imageUri: Uri = Uri.parse("content://media/external/images/media/32196")
-        val fileRef = storageReference.child("image/1")
+        val fileRef = storageReference.child("1")
             fileRef.putFile(imageUri)
                 .addOnSuccessListener {
                     if (id != null) {

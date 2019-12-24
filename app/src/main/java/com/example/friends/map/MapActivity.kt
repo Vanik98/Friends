@@ -58,7 +58,7 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps)
+        setContentView(R.layout.activity_map)
         setMap()
         setToolBar()
         navigationView = findViewById(R.id.navigation_menu)
