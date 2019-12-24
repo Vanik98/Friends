@@ -98,9 +98,9 @@ class MainActivity : BaseActivity(),MainContract.MainView {
 
     override fun takeUserInformation(): User {
         val id = System.currentTimeMillis().toString()
-        val name = ui.name.toString()
-        val sname = ui.sname.toString()
-        val phone = ui.phoneNumber.toString()
+        val name = ui.name.text.toString()
+        val sname = ui.sname.text.toString()
+        val phone = ui.phoneNumber.text.toString()
         val geolocation = null
         val friends = null
         val image = null

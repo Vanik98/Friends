@@ -1,5 +1,6 @@
 package com.example.friends.main
 
+import android.util.Log
 import com.example.friends.data.model.User
 import javax.inject.Inject
 
@@ -14,15 +15,18 @@ class MainPresenter @Inject constructor(
             object:MainContract.MainModel.OnFinishedListener{
                 override fun onFinished(message: String) {
                     mainModel.saveAnyUser(true)
-                    if (message == "created")
-                    {
-                        view.openMapActivity("")
-                    }else {
-                       //: onFinished taki main modely petqa jnjel,u bacel stex
-//                        mainModel.saveAnyUser(true)
-                        view.showVerificationDialog()
-                        accountCreatedMessage(true)
-                    }
+                    view.showVerificationDialog()
+                    accountCreatedMessage(true)
+//                    Log.i("vvv",message)
+//                    if (message == "created")
+//                    {
+////                        view.openMapActivity("")
+//                    }else {
+//                       //: onFinished taki main modely petqa jnjel,u bacel stex
+////                        mainModel.saveAnyUser(true)
+//                        view.showVerificationDialog()
+//                        accountCreatedMessage(true)
+//                    }
                 }
 
                 override fun onProgress() {
@@ -92,8 +96,8 @@ class MainPresenter @Inject constructor(
 
     override  fun attach(view: MainContract.MainView) {
         this.view = view
-        if(mainModel.isSaveAnyUser()){
-            view.openMapActivity("")
-        }
+//        if(mainModel.isSaveAnyUser()){
+//            view.openMapActivity("")
+//        }
     }
 }
