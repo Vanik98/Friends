@@ -11,16 +11,20 @@ class MapPresenter @Inject constructor(
     private lateinit var view: MapContract.MapView
 
     override fun loadData(accountId: String) {
-//        model.getUser(accountId,object :MapContract.MapModel.OnFinishedListener{
-//           override fun onFinished(user: User) {
-//               view.showUserInformation(user)
-//           }
-//
-//           override fun onFailure(t: Throwable) {
-//
-//           }
-//
-//       })
+        model.getUser(accountId,object :MapContract.MapModel.OnFinishedListener{
+           override fun onFinished(user: User) {
+               view.showUserInformation(user)
+           }
+
+           override fun onFailure(t: Throwable) {
+
+           }
+
+       })
+    }
+
+    override fun loadFriendData(freiendAccountIds: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun subscribe() {

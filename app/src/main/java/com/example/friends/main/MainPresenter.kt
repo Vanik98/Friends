@@ -96,8 +96,8 @@ class MainPresenter @Inject constructor(
 
     override  fun attach(view: MainContract.MainView) {
         this.view = view
-//        if(mainModel.isSaveAnyUser()){
-//            view.openMapActivity("")
-//        }
+        if(mainModel.isSaveAnyUser()){
+            view.openMapActivity("")
+        }
     }
 }

@@ -56,6 +56,7 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
@@ -83,7 +84,6 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        showGeolocation()
         if(ContextCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),1)
         }
@@ -92,7 +92,13 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
 
     override fun showUserInformation(user: User) {
         if (user != null){
-            val firends = user.friends
+            showGeolocation(user)
+//            val firends = user.friends
+//            for (i in 0 until firends!!.usersIdList.size){
+//                val friend = firends.usersIdList[i]
+//                val friendUser = presenter.loadFriendData(friend)
+//                showGeolocation(friendUser)
+//            }
         }
     }
 
@@ -101,7 +107,7 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
         mapFragment.getMapAsync(this)
     }
 
-    private fun showGeolocation(){
+    private fun showGeolocation(user: User){
 //        myGelolocation = MarkerOptions().position(LatLng(40.1811, 44.5136)).title("Vanik")
 //        mMap.addMarker(myGelolocation)
         locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
