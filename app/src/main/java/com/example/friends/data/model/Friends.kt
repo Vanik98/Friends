@@ -1,5 +1,13 @@
 package com.example.friends.data.model
 
-class Friends(
-    var usersIdList: List<String>
-)
+import java.io.Serializable
+
+class Friends : Serializable {
+    constructor()
+    constructor(usersIdList: List<String>){
+        this.usersIdList = usersIdList
+    }
+
+    lateinit var  usersIdList: List<String>
+}
+

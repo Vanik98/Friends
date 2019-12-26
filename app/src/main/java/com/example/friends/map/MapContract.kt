@@ -6,8 +6,6 @@ import com.example.friends.data.model.User
 interface MapContract {
     interface MapView : BaseContract.View {
         fun showUserInformation(user:User)
-
-
     }
 
     interface MapPresenter : BaseContract.Presenter<MapView> {

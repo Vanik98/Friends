@@ -84,7 +84,6 @@ class MyFirebase @Inject constructor(
     }
 
     fun getUser(accountId:String,onFinishedListener: MapContract.MapModel.OnFinishedListener){
-         var user:User
         databaseReference = FirebaseDatabase.getInstance().getReference("users/")
         databaseReference.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
@@ -93,7 +92,7 @@ class MyFirebase @Inject constructor(
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (postSnapshot in dataSnapshot.children) {
-                    user = postSnapshot.getValue(User::class.java)!!
+                    var user:User = postSnapshot.getValue(User::class.java)!!
                     onFinishedListener.onFinished(user)
                 }
             }
