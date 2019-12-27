@@ -3,7 +3,6 @@ package com.example.friends.data.firebase
 import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
-import com.example.friends.R
 import com.example.friends.base.BaseActivity
 import com.example.friends.data.model.AccountImage
 import com.example.friends.data.model.Friends
@@ -20,6 +19,10 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import com.google.firebase.database.DatabaseReference
+import android.R
+
+
 
 class MyFirebase @Inject constructor(
     private var activity : BaseActivity
@@ -84,16 +87,17 @@ class MyFirebase @Inject constructor(
     }
 
     fun getUser(accountId:String,onFinishedListener: MapContract.MapModel.OnFinishedListener){
-        databaseReference = FirebaseDatabase.getInstance().getReference("users/-LwYmL7lOtk3J5WzSk")
-        databaseReference.addValueEventListener(object :ValueEventListener{
+        databaseReference = FirebaseDatabase.getInstance().reference
+        val userRef = databaseReference.child("users")
+        userRef.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Log.i("vvv","BBBBBBBBBBBBBBB")
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (postSnapshot in dataSnapshot.children) {
                     var user:User = postSnapshot.getValue(User::class.java)!!
-                    Log.i("vvv","AAAAAAAAAAA${user.name}")
                     onFinishedListener.onFinished(user)
                 }
             }
