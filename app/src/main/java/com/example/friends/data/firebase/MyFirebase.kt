@@ -84,7 +84,7 @@ class MyFirebase @Inject constructor(
     }
 
     fun getUser(accountId:String,onFinishedListener: MapContract.MapModel.OnFinishedListener){
-        databaseReference = FirebaseDatabase.getInstance().getReference("users/")
+        databaseReference = FirebaseDatabase.getInstance().getReference("users/-LwYmL7lOtk3J5WzSk")
         databaseReference.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -93,6 +93,7 @@ class MyFirebase @Inject constructor(
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (postSnapshot in dataSnapshot.children) {
                     var user:User = postSnapshot.getValue(User::class.java)!!
+                    Log.i("vvv","AAAAAAAAAAA${user.name}")
                     onFinishedListener.onFinished(user)
                 }
             }

@@ -121,7 +121,7 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
                 val latiude = location!!.latitude
                 val longitude = location!!.longitude
                 val icon= BitmapDescriptorFactory.fromResource(R.drawable.vanik)
-                myGelolocation = MarkerOptions().position(LatLng(latiude, longitude)).title("Vanik").icon(icon)
+                myGelolocation = MarkerOptions().position(LatLng(latiude, longitude)).title(user.name).icon(icon)
                 mMap.addMarker(myGelolocation)
                 mMap.animateCamera(
                     CameraUpdateFactory.newLatLngZoom(
