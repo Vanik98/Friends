@@ -21,8 +21,8 @@ class MainModel @Inject constructor(
 
 
 
-    override fun createAccount(phoneNumber: String, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
-        firebase.sendVerificationCode(phoneNumber,onFinishedListener)
+    override fun createAccount(user: User, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
+        firebase.sendVerificationCode(user,onFinishedListener)
     }
 
 

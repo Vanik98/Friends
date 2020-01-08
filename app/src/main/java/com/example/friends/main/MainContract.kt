@@ -17,14 +17,14 @@ interface MainContract {
 
         fun openMapActivity(accountId:String)
 
-        fun takeUserInformation():User
+        fun getUserPhoneNumber():String
     }
 
     interface MainPresenter : BaseContract.Presenter<MainView> {
 
         fun checkVerificationCode(verificationCode:String)
 
-        fun createAccount(phoneNumber:String)
+        fun createAccount(user: User)
 
     }
 
@@ -42,7 +42,7 @@ interface MainContract {
 
         fun checkVerificationCode(verificationCode:String,onFinishedListener: OnFinishedListener)
 
-        fun createAccount(phoneNumber:String,onFinishedListener: OnFinishedListener)
+        fun createAccount(user: User,onFinishedListener: OnFinishedListener)
 
         fun saveUserPhoneNumber(phoneNumber: String)
 

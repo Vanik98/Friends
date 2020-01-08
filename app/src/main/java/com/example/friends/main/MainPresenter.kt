@@ -10,11 +10,11 @@ class MainPresenter @Inject constructor(
 
     private lateinit var view: MainContract.MainView
 
-    override fun createAccount(phoneNumber: String) {
-        model.createAccount(phoneNumber,
+    override fun createAccount(user: User) {
+        model.createAccount(user,
             object:MainContract.MainModel.OnFinishedListener{
                 override fun onFinished(message: String) {
-                    model.saveUserPhoneNumber(phoneNumber)
+                    model.saveUserPhoneNumber(user.phone)
                     view.showVerificationDialog()
                     view.showMessageIsAccountCreated(true)
 //                    Log.i("vvv",message)
@@ -42,24 +42,6 @@ class MainPresenter @Inject constructor(
     override fun checkVerificationCode(verificationCode: String){
         model.checkVerificationCode(verificationCode,object :MainContract.MainModel.OnFinishedListener{
             override fun onFinished(message: String) {
-                addUserInformation()
-            }
-
-            override fun onProgress() {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onFailure(t: Throwable) {
-                view.showMessageIsAccountCreated(false)
-            }
-        })
-
-    }
-
-    private fun addUserInformation() {
-        val user : User = view.takeUserInformation()
-        model.addUserInformation(user,object : MainContract.MainModel.OnFinishedListener{
-            override fun onFinished(message: String) {
                 view.showMessageIsVerifyAccount(true)
                 view.openMapActivity(model.getUserSavePhoneNumber())
             }
@@ -69,9 +51,8 @@ class MainPresenter @Inject constructor(
             }
 
             override fun onFailure(t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                view.showMessageIsAccountCreated(false)
             }
-
         })
 
     }

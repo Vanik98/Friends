@@ -32,10 +32,11 @@ class MyFirebase @Inject constructor(
     private lateinit var message:String
     private lateinit var databaseReference:DatabaseReference
     private lateinit var storageReference:StorageReference
-
-    fun sendVerificationCode(phoneNumber: String, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
+    private lateinit var user: User
+    fun sendVerificationCode(user: User, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
+        this.user = user
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-            phoneNumber,
+            user.phone,
             60,
             TimeUnit.SECONDS,
             activity,

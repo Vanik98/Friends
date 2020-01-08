@@ -96,24 +96,23 @@ class MainActivity : BaseActivity(),MainContract.MainView {
 
     }
 
-    override fun takeUserInformation(): User {
-        val id = System.currentTimeMillis().toString()
-        val name = ui.name.text.toString()
-        val sname = ui.sname.text.toString()
-        val phone = ui.phoneNumber.text.toString()
-        val geolocation = null
-        val friends = null
-        val image = null
-        return User(id,name,sname,phone,geolocation,friends,image)
-    }
+
+    override fun getUserPhoneNumber() ="${ui.numberCode.text.toString()}${ui.phoneNumber.text.toString()}"
+
 
 
     private fun openVerificationDialog(context:Context) {
         ui.createAccount.onClick {
-            val phoneNumber = ui.phoneNumber.text.toString()
+            val id = System.currentTimeMillis().toString()
+            val name = ui.name.text.toString()
+            val sname = ui.sname.text.toString()
+            val phoneNumber = "${ui.numberCode.text.toString()}${ui.phoneNumber.text.toString()}"
+            val geolocation = null
+            val friends = null
+            val image = null
+            val user = User(id,name,sname,phoneNumber,geolocation,friends,image)
             if(phoneNumber.isNotEmpty() && phoneNumber.length < 10 ) {
-                presenter.createAccount("${ui.numberCode.text.toString()}${ui.phoneNumber.text.toString()}")
-
+                presenter.createAccount(user)
             }else{
                 Toast.makeText(context,getString(R.string.take_number_error),Toast.LENGTH_SHORT).show()
             }
