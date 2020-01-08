@@ -111,7 +111,7 @@ class MainActivity : BaseActivity(),MainContract.MainView {
             val friends = null
             val image = null
             val user = User(id,name,sname,phoneNumber,geolocation,friends,image)
-            if(phoneNumber.isNotEmpty() && phoneNumber.length < 10 ) {
+            if(phoneNumber.isNotEmpty() && phoneNumber.length > 10 ) {
                 presenter.createAccount(user)
             }else{
                 Toast.makeText(context,getString(R.string.take_number_error),Toast.LENGTH_SHORT).show()

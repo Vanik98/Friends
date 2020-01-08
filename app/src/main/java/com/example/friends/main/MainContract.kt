@@ -48,7 +48,6 @@ interface MainContract {
 
         fun getUserSavePhoneNumber():String
 
-        fun addUserInformation(user:User,onFinishedListener: OnFinishedListener)
 
     }
 

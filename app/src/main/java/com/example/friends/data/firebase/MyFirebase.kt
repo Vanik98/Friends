@@ -35,6 +35,7 @@ class MyFirebase @Inject constructor(
     private lateinit var user: User
     fun sendVerificationCode(user: User, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
         this.user = user
+        Log.i("vvv", user.phone)
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             user.phone,
             60,
@@ -75,8 +76,7 @@ class MyFirebase @Inject constructor(
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(activity) { task ->
                 if (task.isSuccessful) {
-                    message = ""
-                    onFinishedListener.onFinished(message)
+                    addUserInformation(user,onFinishedListener)
                 } else {
 
                     Log.i("vvv", "signInWithCredential:failure", task.exception)
@@ -88,12 +88,14 @@ class MyFirebase @Inject constructor(
     }
 
     fun getUser(accountId:String,onFinishedListener: MapContract.MapModel.OnFinishedListener){
+        mAuth = FirebaseAuth.getInstance()
         databaseReference = FirebaseDatabase.getInstance().reference
-        val userRef = databaseReference.child("users/$accountId")
+        val userRef = databaseReference.child("users").child("${mAuth.currentUser!!.uid}").child("user")
         userRef.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 Log.i("vvv","BBBBBBBBBBBBBBB")
+                onFinishedListener.onFailure(Throwable())
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -105,9 +107,10 @@ class MyFirebase @Inject constructor(
         })
     }
 
-    fun addUserInformation(user:User,onFinishedListener: MainContract.MainModel.OnFinishedListener){
-        databaseReference = FirebaseDatabase.getInstance().getReference("users/")
-        storageReference = FirebaseStorage.getInstance().getReference("images/")
+    private fun addUserInformation(user:User,onFinishedListener: MainContract.MainModel.OnFinishedListener){
+        mAuth = FirebaseAuth.getInstance()
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child("${mAuth.currentUser!!.uid}").child("user")
+        storageReference = FirebaseStorage.getInstance().getReference("images").child("${mAuth.currentUser!!.uid}").child("user")
         val id = databaseReference.push().key
         val imageUri: Uri = Uri.parse("content://media/external/images/media/32196")
         val fileRef = storageReference.child("1")
