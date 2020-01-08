@@ -5,18 +5,18 @@ import com.example.friends.data.model.User
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
-    var mainModel: MainContract.MainModel
+    var model: MainContract.MainModel
 ) : MainContract.MainPresenter {
 
     private lateinit var view: MainContract.MainView
 
     override fun createAccount(phoneNumber: String) {
-        mainModel.createAccount(phoneNumber,
+        model.createAccount(phoneNumber,
             object:MainContract.MainModel.OnFinishedListener{
                 override fun onFinished(message: String) {
-                    mainModel.saveAnyUser(true)
+                    model.saveUserPhoneNumber(phoneNumber)
                     view.showVerificationDialog()
-                    accountCreatedMessage(true)
+                    view.showMessageIsAccountCreated(true)
 //                    Log.i("vvv",message)
 //                    if (message == "created")
 //                    {
@@ -34,32 +34,13 @@ class MainPresenter @Inject constructor(
                 }
 
                 override fun onFailure(t: Throwable) {
-                    accountCreatedMessage(false)
+                    view.showMessageIsAccountCreated(false)
                 }
             })
     }
 
-    private fun addUserInformation() {
-        val user : User = view.takeUserInformation()
-        mainModel.addUserInformation(user,object : MainContract.MainModel.OnFinishedListener{
-            override fun onFinished(message: String) {
-                verificationMessage(true)
-            }
-
-            override fun onProgress() {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onFailure(t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        })
-
-    }
-
     override fun checkVerificationCode(verificationCode: String){
-        mainModel.checkVerificationCode(verificationCode,object :MainContract.MainModel.OnFinishedListener{
+        model.checkVerificationCode(verificationCode,object :MainContract.MainModel.OnFinishedListener{
             override fun onFinished(message: String) {
                 addUserInformation()
             }
@@ -69,21 +50,30 @@ class MainPresenter @Inject constructor(
             }
 
             override fun onFailure(t: Throwable) {
-                verificationMessage(false)
+                view.showMessageIsAccountCreated(false)
             }
         })
 
     }
 
-    private fun accountCreatedMessage(isCreated:Boolean) {
-        view.showMessageIsAccountCreated(isCreated)
-    }
+    private fun addUserInformation() {
+        val user : User = view.takeUserInformation()
+        model.addUserInformation(user,object : MainContract.MainModel.OnFinishedListener{
+            override fun onFinished(message: String) {
+                view.showMessageIsVerifyAccount(true)
+                view.openMapActivity(model.getUserSavePhoneNumber())
+            }
 
-    private fun verificationMessage(isVerify:Boolean) {
-        view.showMessageIsVerifyAccount(isVerify)
-        if(isVerify){
-            view.openMapActivity("")
-        }
+            override fun onProgress() {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onFailure(t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
+
     }
 
     override fun subscribe() {
@@ -96,8 +86,10 @@ class MainPresenter @Inject constructor(
 
     override  fun attach(view: MainContract.MainView) {
         this.view = view
-        if(mainModel.isSaveAnyUser()){
-            view.openMapActivity("")
+        val phoneNumber:String = model.getUserSavePhoneNumber()
+        Log.i("vvv", phoneNumber)
+        if(phoneNumber.isNotEmpty()) {
+            view.openMapActivity(model.getUserSavePhoneNumber())
         }
     }
 }

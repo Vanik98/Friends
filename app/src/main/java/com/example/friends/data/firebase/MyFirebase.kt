@@ -88,7 +88,7 @@ class MyFirebase @Inject constructor(
 
     fun getUser(accountId:String,onFinishedListener: MapContract.MapModel.OnFinishedListener){
         databaseReference = FirebaseDatabase.getInstance().reference
-        val userRef = databaseReference.child("users")
+        val userRef = databaseReference.child("users/$accountId")
         userRef.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -124,6 +124,31 @@ class MyFirebase @Inject constructor(
                     Log.i("vvv","uraaaaaaaaaaa ese chgitem xi")
                 }
         }
+
+    fun refreshInformation(){
+        databaseReference.addChildEventListener(object :ChildEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                val geolocation: Geolocation = p0.getValue(Geolocation::class.java)!!
+
+            }
+
+            override fun onChildRemoved(p0: DataSnapshot) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
+    }
 
     fun addFriend(accountId:String,friendId:String){
         databaseReference = FirebaseDatabase.getInstance().getReference("user/")

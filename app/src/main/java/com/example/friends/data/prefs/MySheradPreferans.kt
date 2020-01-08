@@ -5,15 +5,14 @@ import android.util.Log
 
 class MySheradPreferans(val sPref: SharedPreferences){
 
-    fun saveAnyUser(boolean: Boolean){
+    fun saveUser(phoneNumber:String){
         val ed = sPref.edit()
-        ed.putBoolean("user",boolean)
+        ed.putString("phoneNumber",phoneNumber)
         ed.commit()
         Log.i("vvv","save any user")
     }
-    fun isSaveAnyUser():Boolean{
+    fun getUserSavePhoneNumber():String{
         Log.i("vvv","get any user")
-        return sPref.getBoolean("user", false)}
-
-
+        return sPref.getString("phoneNumber", "")!!
+    }
 }

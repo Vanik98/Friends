@@ -13,11 +13,11 @@ class MainModel @Inject constructor(
         firebase.addUserInformation(user,onFinishedListener)
     }
 
-    override fun saveAnyUser(boolean: Boolean) {
-        msPref.saveAnyUser(boolean)
+    override fun saveUserPhoneNumber(phoneNumber: String) {
+        msPref.saveUser(phoneNumber)
     }
 
-    override fun isSaveAnyUser() = msPref.isSaveAnyUser()
+    override fun getUserSavePhoneNumber() = msPref.getUserSavePhoneNumber()
 
 
 
