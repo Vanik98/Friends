@@ -14,7 +14,6 @@ class MainPresenter @Inject constructor(
         model.createAccount(user,
             object:MainContract.MainModel.OnFinishedListener{
                 override fun onFinished(message: String) {
-                    model.saveUserPhoneNumber(user.phone)
                     view.showVerificationDialog()
                     view.showMessageIsAccountCreated(true)
 //                    Log.i("vvv",message)

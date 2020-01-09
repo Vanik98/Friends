@@ -103,14 +103,13 @@ class MainActivity : BaseActivity(),MainContract.MainView {
 
     private fun openVerificationDialog(context:Context) {
         ui.createAccount.onClick {
-            val id = System.currentTimeMillis().toString()
             val name = ui.name.text.toString()
             val sname = ui.sname.text.toString()
             val phoneNumber = "${ui.numberCode.text.toString()}${ui.phoneNumber.text.toString()}"
             val geolocation = null
             val friends = null
             val image = null
-            val user = User(id,name,sname,phoneNumber,geolocation,friends,image)
+            val user = User("",name,sname,phoneNumber,geolocation,friends,image)
             if(phoneNumber.isNotEmpty() && phoneNumber.length > 10 ) {
                 presenter.createAccount(user)
             }else{

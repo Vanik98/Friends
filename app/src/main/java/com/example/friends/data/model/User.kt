@@ -1,7 +1,7 @@
 package com.example.friends.data.model
 
 data class User (
-    val id: String,
+    var id: String,
     val name: String,
     val surname: String?,
     val phone: String,

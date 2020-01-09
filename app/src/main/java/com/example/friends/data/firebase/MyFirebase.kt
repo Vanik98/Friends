@@ -34,6 +34,7 @@ class MyFirebase @Inject constructor(
     private lateinit var storageReference:StorageReference
     private lateinit var user: User
     fun sendVerificationCode(user: User, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
+        mAuth = FirebaseAuth.getInstance()
         this.user = user
         Log.i("vvv", user.phone)
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
@@ -76,6 +77,7 @@ class MyFirebase @Inject constructor(
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(activity) { task ->
                 if (task.isSuccessful) {
+                    user.id = mAuth.currentUser!!.uid
                     addUserInformation(user,onFinishedListener)
                 } else {
 
@@ -97,7 +99,7 @@ class MyFirebase @Inject constructor(
                 Log.i("vvv","BBBBBBBBBBBBBBB")
                 onFinishedListener.onFailure(Throwable())
             }
-
+//                            093 82 68 79
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (postSnapshot in dataSnapshot.children) {
                     var user:User = postSnapshot.getValue(User::class.java)!!
@@ -108,21 +110,24 @@ class MyFirebase @Inject constructor(
     }
 
     private fun addUserInformation(user:User,onFinishedListener: MainContract.MainModel.OnFinishedListener){
-        mAuth = FirebaseAuth.getInstance()
-        databaseReference = FirebaseDatabase.getInstance().getReference("users").child("${mAuth.currentUser!!.uid}").child("user")
-        storageReference = FirebaseStorage.getInstance().getReference("images").child("${mAuth.currentUser!!.uid}").child("user")
+        Log.i("vvv","$user")
+        databaseReference = FirebaseDatabase.getInstance().getReference("users/")
+        storageReference = FirebaseStorage.getInstance().getReference("images/")
         val id = databaseReference.push().key
-        val imageUri: Uri = Uri.parse("content://media/external/images/media/32196")
-        val fileRef = storageReference.child("1")
+        val imageUri: Uri = Uri.parse("content://storage/emulated/0/VK/Downloads/Bht-XvMtEV8")
+        val fileRef = storageReference.child("images/111")
             fileRef.putFile(imageUri)
                 .addOnSuccessListener {
+                    Log.i("vvv","ynhanrapes anhasaknaliya")
                     if (id != null) {
                         databaseReference.child(id).setValue(user)
                         onFinishedListener.onFinished("")
+                        Log.i("vvv","sax lavaaaaaaaaaaaaaa")
                     }
                 }
                 .addOnFailureListener{
                     onFinishedListener.onFinished("${it.message}")
+                    Log.i("vvv","chi ashxatum  ${it.message} ")
                 }
                 .addOnProgressListener {
                     Log.i("vvv","uraaaaaaaaaaa ese chgitem xi")
