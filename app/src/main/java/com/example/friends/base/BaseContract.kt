@@ -1,6 +1,6 @@
 package com.example.friends.base
 
-abstract class BaseContract {
+interface BaseContract {
 
     interface Presenter<in T> {
         fun subscribe()
@@ -8,10 +8,8 @@ abstract class BaseContract {
         fun attach(view: T)
     }
 
-    interface View {
+    interface View
 
-    }
-
-    interface  Model{}
+    interface  Model
 
 }
