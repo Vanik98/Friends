@@ -28,7 +28,7 @@ import com.google.android.gms.common.api.GoogleApiClient
 import java.lang.NullPointerException
 
 
-class MyFirebase @Inject constructor(
+class FriendsAppFirebase @Inject constructor(
     private var activity : BaseActivity
 ) {
     private lateinit var mAuth: FirebaseAuth
@@ -37,6 +37,7 @@ class MyFirebase @Inject constructor(
     private lateinit var databaseReference:DatabaseReference
     private lateinit var storageReference:StorageReference
     private lateinit var user: User
+
     fun sendVerificationCode(user: User, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
         mAuth = FirebaseAuth.getInstance()
         this.user = user
@@ -175,9 +176,5 @@ class MyFirebase @Inject constructor(
         userId?.let { databaseReference.child(it).setValue(friendId) }
     }
 
-    fun signin(){
-
-
-    }
 }
 

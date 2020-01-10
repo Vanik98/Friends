@@ -4,7 +4,7 @@ import android.content.LocusId
 import android.content.SharedPreferences
 import android.util.Log
 
-class MySheradPreferans(val sPref: SharedPreferences){
+class FriendsAppSheradPreferans(val sPref: SharedPreferences){
 
     fun saveUserId(accountId: String){
         val ed = sPref.edit()
