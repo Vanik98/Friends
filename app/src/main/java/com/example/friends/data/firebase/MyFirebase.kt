@@ -117,11 +117,12 @@ class MyFirebase @Inject constructor(
     }
 
     private fun addUserInformation(user:User,onFinishedListener: MainContract.MainModel.OnFinishedListener){
-        Log.i("vvv","$user")
-        databaseReference = FirebaseDatabase.getInstance().getReference("users/")
-//        storageReference = FirebaseStorage.getInstance().getReference("images/")
         val id = user.id
-        databaseReference.child(id).setValue(user)
+        Log.i("vvv","$user")
+        databaseReference = FirebaseDatabase.getInstance().getReference("users/$id")
+//        storageReference = FirebaseStorage.getInstance().getReference("images/")
+
+        databaseReference.child("user").setValue(user)
         onFinishedListener.onFinished(user.id)
 //        val imageUri: Uri = Uri.parse("content://storage/emulated/0/VK/Downloads/Bht-XvMtEV8")
 //        val fileRef = storageReference.child("images/111")
