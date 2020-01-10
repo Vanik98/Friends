@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".friends.UsersFriendsActivity"
+            android:name=".friendsinfo.FriendsInfoActivity"
             android:label="@string/title_activity_friends"
             android:theme="@style/NoActionBar"></activity>
         <activity android:name=".settings.SettingsActivity" />

@@ -1,17 +1,17 @@
-package com.example.friends.friends
+package com.example.friends.friendsinfo
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.friends.R
 
-import kotlinx.android.synthetic.main.activity_users_friends.*
+import kotlinx.android.synthetic.main.activity_friends_info.*
 
-class UsersFriendsActivity : AppCompatActivity() {
+class FriendsInfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_users_friends)
+        setContentView(R.layout.activity_friends_info)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->

@@ -30,15 +30,14 @@ import java.lang.NullPointerException
 
 class FriendsAppFirebase @Inject constructor(
     private var activity : BaseActivity
-)
-{
+) {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var verificationID: String
     private lateinit var message:String
     private lateinit var databaseReference:DatabaseReference
     private lateinit var storageReference:StorageReference
     private lateinit var user: User
-
+    
     fun sendVerificationCode(user: User, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
         mAuth = FirebaseAuth.getInstance()
         this.user = user
