@@ -21,7 +21,11 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import com.google.firebase.database.DatabaseReference
 import android.R
-
+import android.content.Context
+import android.provider.Settings.Global.getString
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.GoogleApiClient
+import java.lang.NullPointerException
 
 
 class MyFirebase @Inject constructor(
@@ -44,12 +48,11 @@ class MyFirebase @Inject constructor(
             activity,
             object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                 override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
-                    message = "created"
+                    message = "Account has already been created."
                     onFinishedListener.onFinished(message)
                 }
 
                 override fun onVerificationFailed(e: FirebaseException) {
-
                     Log.i("vvv", e?.message!!)
                     onFinishedListener.onFailure(e)
                 }
@@ -68,8 +71,12 @@ class MyFirebase @Inject constructor(
     }
 
     fun verifySignInCode(code: String, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
-        val credential = PhoneAuthProvider.getCredential(verificationID!!, code)
-        signInWithPhoneAuthCredential(credential, onFinishedListener)
+        if(verificationID.isNotEmpty()) {
+            val credential = PhoneAuthProvider.getCredential(verificationID!!, code)
+            signInWithPhoneAuthCredential(credential, onFinishedListener)
+        }else{
+            onFinishedListener.onFailure(NullPointerException())
+        }
     }
 
     private fun signInWithPhoneAuthCredential(credential: AuthCredential, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
@@ -90,16 +97,16 @@ class MyFirebase @Inject constructor(
     }
 
     fun getUser(accountId:String,onFinishedListener: MapContract.MapModel.OnFinishedListener){
-        mAuth = FirebaseAuth.getInstance()
+        Log.i("vvv","$accountId")
         databaseReference = FirebaseDatabase.getInstance().reference
-        val userRef = databaseReference.child("users").child("${mAuth.currentUser!!.uid}").child("user")
+        val userRef = databaseReference.child("users").child(accountId)
         userRef.addValueEventListener(object :ValueEventListener{
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                 Log.i("vvv","BBBBBBBBBBBBBBB")
                 onFinishedListener.onFailure(Throwable())
             }
-//                            093 82 68 79
+//                            093 82 68 79   374 94 59 25 59
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (postSnapshot in dataSnapshot.children) {
                     var user:User = postSnapshot.getValue(User::class.java)!!
@@ -112,26 +119,28 @@ class MyFirebase @Inject constructor(
     private fun addUserInformation(user:User,onFinishedListener: MainContract.MainModel.OnFinishedListener){
         Log.i("vvv","$user")
         databaseReference = FirebaseDatabase.getInstance().getReference("users/")
-        storageReference = FirebaseStorage.getInstance().getReference("images/")
-        val id = databaseReference.push().key
-        val imageUri: Uri = Uri.parse("content://storage/emulated/0/VK/Downloads/Bht-XvMtEV8")
-        val fileRef = storageReference.child("images/111")
-            fileRef.putFile(imageUri)
-                .addOnSuccessListener {
-                    Log.i("vvv","ynhanrapes anhasaknaliya")
-                    if (id != null) {
-                        databaseReference.child(id).setValue(user)
-                        onFinishedListener.onFinished("")
-                        Log.i("vvv","sax lavaaaaaaaaaaaaaa")
-                    }
-                }
-                .addOnFailureListener{
-                    onFinishedListener.onFinished("${it.message}")
-                    Log.i("vvv","chi ashxatum  ${it.message} ")
-                }
-                .addOnProgressListener {
-                    Log.i("vvv","uraaaaaaaaaaa ese chgitem xi")
-                }
+//        storageReference = FirebaseStorage.getInstance().getReference("images/")
+        val id = user.id
+        databaseReference.child(id).setValue(user)
+        onFinishedListener.onFinished(user.id)
+//        val imageUri: Uri = Uri.parse("content://storage/emulated/0/VK/Downloads/Bht-XvMtEV8")
+//        val fileRef = storageReference.child("images/111")
+//            fileRef.putFile(imageUri)
+//                .addOnSuccessListener {
+//                    Log.i("vvv","ynhanrapes anhasaknaliya")
+//                    if (id != null) {
+//                        databaseReference.child(id).setValue(user)
+//                        onFinishedListener.onFinished("")
+//                        Log.i("vvv","sax lavaaaaaaaaaaaaaa")
+//                    }
+//                }
+//                .addOnFailureListener{
+//                    onFinishedListener.onFinished("${it.message}")
+//                    Log.i("vvv","chi ashxatum  ${it.message} ")
+//                }
+//                .addOnProgressListener {
+//                    Log.i("vvv","uraaaaaaaaaaa ese chgitem xi")
+//                }
         }
 
     fun refreshInformation(){
@@ -163,6 +172,11 @@ class MyFirebase @Inject constructor(
         databaseReference = FirebaseDatabase.getInstance().getReference("user/")
         val userId = databaseReference.push().key
         userId?.let { databaseReference.child(it).setValue(friendId) }
+    }
+
+    fun signin(){
+
+
     }
 }
 

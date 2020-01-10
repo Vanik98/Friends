@@ -9,23 +9,15 @@ class MainPresenter @Inject constructor(
 ) : MainContract.MainPresenter {
 
     private lateinit var view: MainContract.MainView
-
+    private lateinit var createdMessage:String
     override fun createAccount(user: User) {
         model.createAccount(user,
             object:MainContract.MainModel.OnFinishedListener{
                 override fun onFinished(message: String) {
                     view.showVerificationDialog()
                     view.showMessageIsAccountCreated(true)
-//                    Log.i("vvv",message)
-//                    if (message == "created")
-//                    {
-////                        view.openMapActivity("")
-//                    }else {
-//                       //: onFinished taki main modely petqa jnjel,u bacel stex
-////                        mainModel.saveAnyUser(true)
-//                        view.showVerificationDialog()
-//                        accountCreatedMessage(true)
-//                    }
+                    createdMessage = message
+                    Log.i("vvv",message)
                 }
 
                 override fun onProgress() {
@@ -33,6 +25,7 @@ class MainPresenter @Inject constructor(
                 }
 
                 override fun onFailure(t: Throwable) {
+                    Log.i("vvv",t.message)
                     view.showMessageIsAccountCreated(false)
                 }
             })
@@ -41,8 +34,11 @@ class MainPresenter @Inject constructor(
     override fun checkVerificationCode(verificationCode: String){
         model.checkVerificationCode(verificationCode,object :MainContract.MainModel.OnFinishedListener{
             override fun onFinished(message: String) {
+                if(createdMessage != "Account has already been created.") {
+                    model.saveUserId(message)
+                }
                 view.showMessageIsVerifyAccount(true)
-                view.openMapActivity(model.getUserSavePhoneNumber())
+                view.openMapActivity(model.getUserId())
             }
 
             override fun onProgress() {
@@ -50,6 +46,7 @@ class MainPresenter @Inject constructor(
             }
 
             override fun onFailure(t: Throwable) {
+                Log.i("vvv",t.message)
                 view.showMessageIsAccountCreated(false)
             }
         })
@@ -66,10 +63,10 @@ class MainPresenter @Inject constructor(
 
     override  fun attach(view: MainContract.MainView) {
         this.view = view
-        val phoneNumber:String = model.getUserSavePhoneNumber()
-        Log.i("vvv", phoneNumber)
-        if(phoneNumber.isNotEmpty()) {
-            view.openMapActivity(model.getUserSavePhoneNumber())
+        val accountId:String = model.getUserId()
+        Log.i("vvv", accountId)
+        if(accountId.isNotEmpty()) {
+            view.openMapActivity(model.getUserId())
         }
     }
 }

@@ -1,18 +1,19 @@
 package com.example.friends.data.prefs
 
+import android.content.LocusId
 import android.content.SharedPreferences
 import android.util.Log
 
 class MySheradPreferans(val sPref: SharedPreferences){
 
-    fun saveUser(phoneNumber:String){
+    fun saveUserId(accountId: String){
         val ed = sPref.edit()
-        ed.putString("phoneNumber",phoneNumber)
+        ed.putString("accountId",accountId)
         ed.commit()
         Log.i("vvv","save any user")
     }
-    fun getUserSavePhoneNumber():String{
-        Log.i("vvv","get any user")
-        return sPref.getString("phoneNumber", "")!!
+    fun getUserId():String{
+        Log.i("vvv","get accountId")
+        return sPref.getString("accountId", "")!!
     }
 }

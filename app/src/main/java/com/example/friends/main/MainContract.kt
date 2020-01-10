@@ -44,9 +44,9 @@ interface MainContract {
 
         fun createAccount(user: User,onFinishedListener: OnFinishedListener)
 
-        fun saveUserPhoneNumber(phoneNumber: String)
+        fun saveUserId(accountId: String)
 
-        fun getUserSavePhoneNumber():String
+        fun getUserId():String
 
 
     }

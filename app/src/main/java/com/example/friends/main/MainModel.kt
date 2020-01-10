@@ -10,18 +10,15 @@ class MainModel @Inject constructor(
     var msPref: MySheradPreferans
 ): MainContract.MainModel {
 
-    override fun saveUserPhoneNumber(phoneNumber: String) {
-        msPref.saveUser(phoneNumber)
+    override fun saveUserId(accountId: String) {
+        msPref.saveUserId(accountId)
     }
 
-    override fun getUserSavePhoneNumber() = msPref.getUserSavePhoneNumber()
-
-
+    override fun getUserId() = msPref.getUserId()
 
     override fun createAccount(user: User, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
         firebase.sendVerificationCode(user,onFinishedListener)
     }
-
 
     override fun checkVerificationCode(verificationCode: String, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
         firebase.verifySignInCode(verificationCode,onFinishedListener)
