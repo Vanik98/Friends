@@ -5,13 +5,13 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.friends.R
 
-import kotlinx.android.synthetic.main.activity_friends.*
+import kotlinx.android.synthetic.main.activity_users_friends.*
 
-class FriendsActivity : AppCompatActivity() {
+class UsersFriendsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_friends)
+        setContentView(R.layout.activity_users_friends)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->

@@ -20,7 +20,7 @@ import com.example.friends.di.module.BaseActivityModule
 import com.example.friends.di.module.FirbaseModule
 import com.example.friends.di.module.MapModule
 import com.example.friends.data.model.User
-import com.example.friends.friends.FriendsActivity
+import com.example.friends.friends.UsersFriendsActivity
 import com.example.friends.settings.SettingsActivity
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -167,7 +167,7 @@ class MapActivity : BaseActivity(),OnMapReadyCallback, MapContract.MapView {
         navigationView.setNavigationItemSelectedListener {
              when(it.itemId) {
                  R.id.nav_map -> {}
-                 R.id.nav_friends -> startActivity(Intent(this, FriendsActivity::class.java))
+                 R.id.nav_friends -> startActivity(Intent(this, UsersFriendsActivity::class.java))
                  R.id.nav_friends -> startActivity(Intent(this, SettingsActivity::class.java))
              }
              true
