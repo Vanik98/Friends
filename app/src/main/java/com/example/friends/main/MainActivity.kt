@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.friends.R
+import com.example.friends.anko.DialogLoadingUi
 import com.example.friends.base.BaseActivity
 import com.example.friends.di.component.ApplicationComponent
 import com.example.friends.di.component.DaggerActivityComponent
@@ -38,6 +39,7 @@ class MainActivity : BaseActivity(),MainContract.MainView {
 
     @Inject lateinit var ui:MainActivityUI
     @Inject lateinit var presenter :MainContract.MainPresenter
+    private lateinit var loadingDialog:DialogLoadingUi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +58,15 @@ class MainActivity : BaseActivity(),MainContract.MainView {
         presenter.unsubscribe()
         super.onPause()
     }
+
+    override fun openLoadingDialog() {
+        loadingDialog = DialogLoadingUi(AnkoContext.Companion.create(ctx, ui.v))
+    }
+
+    override fun closeLoadingDialog() {
+        loadingDialog.dialog.dismiss()
+    }
+
 
     override fun showMessageIsAccountCreated(isCreate: Boolean) {
         if(isCreate){

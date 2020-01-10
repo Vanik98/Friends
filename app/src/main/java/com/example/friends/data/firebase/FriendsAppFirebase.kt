@@ -39,6 +39,7 @@ class FriendsAppFirebase @Inject constructor(
     private lateinit var user: User
     
     fun sendVerificationCode(user: User, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
+        onFinishedListener.onProgress()
         mAuth = FirebaseAuth.getInstance()
         this.user = user
         Log.i("vvv", user.phone)
@@ -72,6 +73,7 @@ class FriendsAppFirebase @Inject constructor(
     }
 
     fun verifySignInCode(code: String, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
+        onFinishedListener.onProgress()
         if(verificationID.isNotEmpty()) {
             val credential = PhoneAuthProvider.getCredential(verificationID!!, code)
             signInWithPhoneAuthCredential(credential, onFinishedListener)

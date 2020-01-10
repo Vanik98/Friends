@@ -18,6 +18,10 @@ interface MainContract {
         fun openMapActivity(accountId:String)
 
         fun getUserPhoneNumber():String
+
+        fun openLoadingDialog()
+
+        fun closeLoadingDialog()
     }
 
     interface MainPresenter : BaseContract.Presenter<MainView> {

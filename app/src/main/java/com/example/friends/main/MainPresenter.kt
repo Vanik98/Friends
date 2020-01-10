@@ -14,6 +14,7 @@ class MainPresenter @Inject constructor(
         model.createAccount(user,
             object:MainContract.MainModel.OnFinishedListener{
                 override fun onFinished(message: String) {
+                    view.closeLoadingDialog()
                     view.showVerificationDialog()
                     view.showMessageIsAccountCreated(true)
                     createdMessage = message
@@ -21,10 +22,11 @@ class MainPresenter @Inject constructor(
                 }
 
                 override fun onProgress() {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                   view.openLoadingDialog()
                 }
 
                 override fun onFailure(t: Throwable) {
+                    view.closeLoadingDialog()
                     Log.i("vvv",t.message)
                     view.showMessageIsAccountCreated(false)
                 }
@@ -34,18 +36,21 @@ class MainPresenter @Inject constructor(
     override fun checkVerificationCode(verificationCode: String){
         model.checkVerificationCode(verificationCode,object :MainContract.MainModel.OnFinishedListener{
             override fun onFinished(message: String) {
+                view.closeLoadingDialog()
                 if(createdMessage != "Account has already been created.") {
                     model.saveUserId(message)
                 }
                 view.showMessageIsVerifyAccount(true)
                 view.openMapActivity(model.getUserId())
+
             }
 
             override fun onProgress() {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                view.openLoadingDialog()
             }
 
             override fun onFailure(t: Throwable) {
+                view.closeLoadingDialog()
                 Log.i("vvv",t.message)
                 view.showMessageIsAccountCreated(false)
             }
