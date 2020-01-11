@@ -27,49 +27,45 @@ import org.jetbrains.anko.*
         verticalLayout {
             clipToPadding = false
             backgroundColor = ResourcesCompat.getColor(resources, R.color.colorWhite, null)
-            textView("Friends") {
-                textSize = 70f
-                textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
-                gravity = Gravity.CENTER
-                typeface = ResourcesCompat.getFont(context, R.font.alex_brush)
-            }.lparams(width = matchParent, height = dip(100)) {
+            imageView{
+                setImageResource(R.drawable.logo_friends)
+
+            }.lparams(width = dip(300), height = dip(200)){
                 topMargin = dip(50)
-                leftMargin = dip(5)
-                rightMargin = dip(5)
+                gravity = Gravity.CENTER
             }
             textView("Name") {
                 textSize = 15f
                 textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
             }.lparams(width = wrapContent, height = wrapContent) {
-                topMargin = dip(15)
-                leftMargin = dip(5)
-                rightMargin = dip(5)
+                leftMargin = dip(15)
+                rightMargin = dip(15)
             }
             name = editText{
                 textSize = 18f
                 textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
-                backgroundColor = ResourcesCompat.getColor(resources, R.color.colorGrayLight, null)
+                background = ResourcesCompat.getDrawable(resources, R.drawable.textview_border, null)
             }.lparams(width = matchParent, height = dip(45)) {
                 topMargin = dip(5)
-                leftMargin = dip(5)
-                rightMargin = dip(5)
+                leftMargin = dip(15)
+                rightMargin = dip(15)
             }
             textView("Surname") {
                 textSize = 15f
                 textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
             }.lparams(width = wrapContent, height = wrapContent) {
                 topMargin = dip(5)
-                leftMargin = dip(5)
-                rightMargin = dip(5)
+                leftMargin = dip(15)
+                rightMargin = dip(15)
             }
             sname = editText{
                 textSize = 18f
                 textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
-                backgroundColor = ResourcesCompat.getColor(resources, R.color.colorGrayLight, null)
+                background = ResourcesCompat.getDrawable(resources, R.drawable.textview_border, null)
             }.lparams(width = matchParent, height = dip(45)) {
                 topMargin = dip(5)
-                leftMargin = dip(5)
-                rightMargin = dip(5)
+                leftMargin = dip(15)
+                rightMargin = dip(15)
             }
             linearLayout {
                 textView("Code:") {
@@ -77,40 +73,40 @@ import org.jetbrains.anko.*
                     textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
                 }.lparams(width = wrapContent, height = dip(20)) {
                     topMargin = dip(5)
-                    leftMargin = dip(5)
-                    rightMargin = dip(5)
+                    leftMargin = dip(15)
+                    rightMargin = dip(15)
                 }
                 textView("Number:") {
                     textSize = 15f
                     textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
                 }.lparams(width = wrapContent, height = dip(20)) {
                     topMargin = dip(5)
-                    leftMargin = dip(15)
-                    rightMargin = dip(5)
+                    leftMargin = dip(30)
+                    rightMargin = dip(15)
                 }
             }
             linearLayout {
                   numberCode = editText() {
                     textSize = 18f
                     textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
-                    backgroundColor = ResourcesCompat.getColor(resources, R.color.colorGrayLight, null)
+                    background = ResourcesCompat.getDrawable(resources, R.drawable.textview_border, null)
                     elevation = dip(4).toFloat()
                     leftPadding = dip(2)
                     filters = arrayOf(InputFilter.LengthFilter(4))
                 }.lparams(width = dip(50), height = dip(45)) {
-                    leftMargin = dip(5)
-                    rightMargin = dip(5)
+                    leftMargin = dip(15)
+                    rightMargin = dip(15)
                 }
                 phoneNumber = editText {
                     textSize = 18f
                     textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
                     inputType = InputType.TYPE_CLASS_NUMBER
-                    backgroundColor = ResourcesCompat.getColor(resources, R.color.colorGrayLight, null)
+                    background = ResourcesCompat.getDrawable(resources, R.drawable.textview_border, null)
                     elevation = dip(4).toFloat()
                     leftPadding = dip(10)
                 }.lparams(width = matchParent, height = dip(45)) {
-                    leftMargin = dip(5)
-                    rightMargin = dip(5)
+                    leftMargin = dip(15)
+                    rightMargin = dip(15)
                 }
 
             }
@@ -121,8 +117,8 @@ import org.jetbrains.anko.*
             }.lparams(width = matchParent, height = dip(45)) {
                 gravity = Gravity.CENTER
                 topMargin = dip(50)
-                leftMargin = dip(5)
-                rightMargin = dip(5)
+                leftMargin = dip(15)
+                rightMargin = dip(15)
             }
             v=view()
         }
