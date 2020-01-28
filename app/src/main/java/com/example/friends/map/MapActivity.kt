@@ -54,11 +54,14 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
         setContentView(R.layout.activity_map)
         setMap()
         NavigationDrawer.setToolBar(this)
-        //        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         presenter.attach(this)
-        val accountId = intent.getStringExtra("accountId")
-        presenter.loadData(accountId)
+        loadUserData()
+    }
 
+
+    private fun loadUserData() {
+        val accountId = intent.getStringExtra("accountId")
+            presenter.loadData(accountId)
     }
 
     override fun onRequestPermissionsResult(
@@ -100,7 +103,7 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
     override fun showUserInformation(user: User) {
         if (user != null) {
             showGeolocation(user)
-            setNameAndPhoneInMenu(user.name,user.phone)
+            setNameAndPhoneInMenu(user.name, user.phone)
 //            val firends = user.friends
 //            for (i in 0 until firends!!.usersIdList.size){
 //                val friend = firends.usersIdList[i]
@@ -110,7 +113,7 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
         }
     }
 
-    private fun setNameAndPhoneInMenu(name:String,phone:String) {
+    private fun setNameAndPhoneInMenu(name: String, phone: String) {
         val nameTV: TextView = NavigationDrawer.drawerLayout.findViewById(R.id.user_name)
         val phoneTV: TextView = NavigationDrawer.drawerLayout.findViewById(R.id.user_phone)
         nameTV.text = name

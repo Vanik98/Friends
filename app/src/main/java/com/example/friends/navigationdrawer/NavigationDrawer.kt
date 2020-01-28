@@ -17,7 +17,10 @@ object NavigationDrawer {
     lateinit var toolbar: androidx.appcompat.widget.Toolbar
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
+
+
     fun setToolBar(activity: BaseActivity) {
+        //        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         drawerLayout = activity.findViewById(R.id.drawerlayout)
         toolbar = activity.findViewById(R.id.toolbar)
         activity.setSupportActionBar(toolbar)
@@ -32,9 +35,24 @@ object NavigationDrawer {
     private fun setNavigationViewListener(activity: BaseActivity) {
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_map -> activity.startActivity(Intent(activity, MapActivity::class.java))
-                R.id.nav_friends -> activity.startActivity(Intent(activity, FriendsInfoActivity::class.java))
-                R.id.nav_settings -> activity.startActivity(Intent(activity, SettingsActivity::class.java))
+                R.id.nav_map -> {
+                    if (!navigationView.menu.getItem(0).isChecked) {
+                        it.isChecked = true
+                        activity.startActivity(Intent(activity, MapActivity::class.java))
+                    }
+                }
+                R.id.nav_friends -> {
+                    if (!navigationView.menu.getItem(1).isChecked) {
+                        it.isChecked = true
+                        activity.startActivity(Intent(activity, FriendsInfoActivity::class.java))
+                    }
+                }
+                R.id.nav_settings -> {
+                    if (!navigationView.menu.getItem(2).isChecked) {
+                        it.isChecked = true
+                        activity.startActivity(Intent(activity, SettingsActivity::class.java))
+                    }
+                }
             }
             true
         }
