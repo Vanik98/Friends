@@ -29,16 +29,19 @@ import java.lang.NullPointerException
 
 
 class FriendsAppFirebase @Inject constructor(
-    private var activity : BaseActivity
+    private var activity: BaseActivity
 ) {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var verificationID: String
-    private lateinit var message:String
-    private lateinit var databaseReference:DatabaseReference
-    private lateinit var storageReference:StorageReference
+    private lateinit var message: String
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var storageReference: StorageReference
     private lateinit var user: User
-    
-    fun sendVerificationCode(user: User, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
+
+    fun sendVerificationCode(
+        user: User,
+        onFinishedListener: MainContract.MainModel.OnFinishedListener
+    ) {
         onFinishedListener.onProgress()
         mAuth = FirebaseAuth.getInstance()
         this.user = user
@@ -72,23 +75,29 @@ class FriendsAppFirebase @Inject constructor(
         )
     }
 
-    fun verifySignInCode(code: String, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
+    fun verifySignInCode(
+        code: String,
+        onFinishedListener: MainContract.MainModel.OnFinishedListener
+    ) {
         onFinishedListener.onProgress()
-        if(verificationID.isNotEmpty()) {
+        if (verificationID.isNotEmpty()) {
             val credential = PhoneAuthProvider.getCredential(verificationID!!, code)
             signInWithPhoneAuthCredential(credential, onFinishedListener)
-        }else{
+        } else {
             onFinishedListener.onFailure(NullPointerException())
         }
     }
 
-    private fun signInWithPhoneAuthCredential(credential: AuthCredential, onFinishedListener: MainContract.MainModel.OnFinishedListener) {
+    private fun signInWithPhoneAuthCredential(
+        credential: AuthCredential,
+        onFinishedListener: MainContract.MainModel.OnFinishedListener
+    ) {
         mAuth = FirebaseAuth.getInstance()
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(activity) { task ->
                 if (task.isSuccessful) {
                     user.id = mAuth.currentUser!!.uid
-                    addUserInformation(user,onFinishedListener)
+                    addUserInformation(user, onFinishedListener)
                 } else {
 
                     Log.i("vvv", "signInWithCredential:failure", task.exception)
@@ -99,29 +108,33 @@ class FriendsAppFirebase @Inject constructor(
             }
     }
 
-    fun getUser(accountId:String,onFinishedListener: MapContract.MapModel.OnFinishedListener){
-        Log.i("vvv","$accountId")
+    fun getUser(accountId: String, onFinishedListener: MapContract.MapModel.OnFinishedListener) {
+        Log.i("vvv", "$accountId")
         databaseReference = FirebaseDatabase.getInstance().reference
         val userRef = databaseReference.child("users").child(accountId)
-        userRef.addValueEventListener(object :ValueEventListener{
+        userRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                Log.i("vvv","BBBBBBBBBBBBBBB")
+                Log.i("vvv", "BBBBBBBBBBBBBBB")
                 onFinishedListener.onFailure(Throwable())
             }
-//                            093 82 68 79   374 94 59 25 59
+
+            //                            093 82 68 79   374 94 59 25 59
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (postSnapshot in dataSnapshot.children) {
-                    var user:User = postSnapshot.getValue(User::class.java)!!
+                    var user: User = postSnapshot.getValue(User::class.java)!!
                     onFinishedListener.onFinished(user)
                 }
             }
         })
     }
 
-    private fun addUserInformation(user:User,onFinishedListener: MainContract.MainModel.OnFinishedListener){
+    private fun addUserInformation(
+        user: User,
+        onFinishedListener: MainContract.MainModel.OnFinishedListener
+    ) {
         val id = user.id
-        Log.i("vvv","$user")
+        Log.i("vvv", "$user")
         databaseReference = FirebaseDatabase.getInstance().getReference("users/$id")
 //        storageReference = FirebaseStorage.getInstance().getReference("images/")
 
@@ -145,10 +158,10 @@ class FriendsAppFirebase @Inject constructor(
 //                .addOnProgressListener {
 //                    Log.i("vvv","uraaaaaaaaaaa ese chgitem xi")
 //                }
-        }
+    }
 
-    fun refreshInformation(){
-        databaseReference.addChildEventListener(object :ChildEventListener{
+    fun refreshInformation() {
+        databaseReference.addChildEventListener(object : ChildEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
@@ -172,7 +185,7 @@ class FriendsAppFirebase @Inject constructor(
         })
     }
 
-    fun addFriend(accountId:String,friendId:String){
+    fun addFriend(accountId: String, friendId: String) {
         databaseReference = FirebaseDatabase.getInstance().getReference("user/")
         val userId = databaseReference.push().key
         userId?.let { databaseReference.child(it).setValue(friendId) }

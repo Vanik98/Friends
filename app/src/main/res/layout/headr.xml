@@ -11,14 +11,23 @@
     <ImageView
         android:layout_height="50dp"
         android:layout_width="50dp"
-        android:src="@drawable/map"
+        android:src="@drawable/default_user_image"
         />
     <TextView
+        android:id="@+id/user_name"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Friends"
+        android:text="Name"
         android:layout_marginTop="15dp"
-        android:textSize="20dp"
+        android:textSize="18dp"
+        android:textColor="#FFF"
+        />
+    <TextView
+        android:id="@+id/user_phone"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Phone"
+        android:textSize="16dp"
         android:textColor="#FFF"
         />
 </LinearLayout>

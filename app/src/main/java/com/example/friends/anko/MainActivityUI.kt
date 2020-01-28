@@ -13,24 +13,25 @@ import androidx.core.content.res.ResourcesCompat
 import com.example.friends.R
 import com.example.friends.main.MainActivity
 import org.jetbrains.anko.*
- class MainActivityUI : AnkoComponent<MainActivity> {
 
-     lateinit var v: View
-     lateinit var createAccount:Button
-     lateinit var phoneNumber:EditText
-     lateinit var numberCode:EditText
-     lateinit var name:EditText
-     lateinit var sname:EditText
+class MainActivityUI : AnkoComponent<MainActivity> {
+
+    lateinit var v: View
+    lateinit var createAccount: Button
+    lateinit var phoneNumber: EditText
+    lateinit var numberCode: EditText
+    lateinit var name: EditText
+    lateinit var sname: EditText
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     override fun createView(ui: AnkoContext<MainActivity>) = with(ui) {
         verticalLayout {
             clipToPadding = false
             backgroundColor = ResourcesCompat.getColor(resources, R.color.colorWhite, null)
-            imageView{
+            imageView {
                 setImageResource(R.drawable.logo_friends)
 
-            }.lparams(width = dip(300), height = dip(200)){
+            }.lparams(width = dip(300), height = dip(200)) {
                 topMargin = dip(50)
                 gravity = Gravity.CENTER
             }
@@ -41,7 +42,7 @@ import org.jetbrains.anko.*
                 leftMargin = dip(15)
                 rightMargin = dip(15)
             }
-            name = editText{
+            name = editText {
                 textSize = 18f
                 textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
                 background = ResourcesCompat.getDrawable(resources, R.drawable.textview_border, null)
@@ -58,7 +59,7 @@ import org.jetbrains.anko.*
                 leftMargin = dip(15)
                 rightMargin = dip(15)
             }
-            sname = editText{
+            sname = editText {
                 textSize = 18f
                 textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
                 background = ResourcesCompat.getDrawable(resources, R.drawable.textview_border, null)
@@ -86,7 +87,7 @@ import org.jetbrains.anko.*
                 }
             }
             linearLayout {
-                  numberCode = editText() {
+                numberCode = editText() {
                     textSize = 18f
                     textColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
                     background = ResourcesCompat.getDrawable(resources, R.drawable.textview_border, null)
@@ -110,9 +111,10 @@ import org.jetbrains.anko.*
                 }
 
             }
-                createAccount = button("Create Account") {
-                    background = ResourcesCompat.getDrawable(resources, R.drawable.button_color_change, null)
-                    textColor = ResourcesCompat.getColor(resources, R.color.colorWhite, null)
+            createAccount = button("Create Account") {
+                background =
+                    ResourcesCompat.getDrawable(resources, R.drawable.button_color_change, null)
+                textColor = ResourcesCompat.getColor(resources, R.color.colorWhite, null)
 
             }.lparams(width = matchParent, height = dip(45)) {
                 gravity = Gravity.CENTER
@@ -120,7 +122,7 @@ import org.jetbrains.anko.*
                 leftMargin = dip(15)
                 rightMargin = dip(15)
             }
-            v=view()
+            v = view()
         }
     }
 }

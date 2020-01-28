@@ -11,32 +11,35 @@ import org.jetbrains.anko.*
 
 class DialogRegistrationUi(ui: AnkoContext<View>) {
     val dialog: DialogInterface
-    lateinit var verifyCode:EditText
-    lateinit var chackCode:Button
+    lateinit var verifyCode: EditText
+    lateinit var chackCode: Button
+
     init {
-      with(ui) {
-          dialog=alert("enter verification code"){
-              customView {
-                  verticalLayout {
-                      verifyCode = editText {
-                          textSize = 18f
-                          backgroundColor = ResourcesCompat.getColor(resources, R.color.colorBlack, null)
-                          textColor = ResourcesCompat.getColor(resources, R.color.colorWhite, null)
-                      }.lparams(width = matchParent, height = dip(40)) {
+        with(ui) {
+            dialog = alert("enter verification code") {
+                customView {
+                    verticalLayout {
+                        verifyCode = editText {
+                            textSize = 18f
+                            backgroundColor =
+                                ResourcesCompat.getColor(resources, R.color.colorBlack, null)
+                            textColor =
+                                ResourcesCompat.getColor(resources, R.color.colorWhite, null)
+                        }.lparams(width = matchParent, height = dip(40)) {
 
-                      }
-                      chackCode = button("enter code") {
+                        }
+                        chackCode = button("enter code") {
 
-                      }.lparams(width = matchParent, height = dip(45)) {
-                      gravity = Gravity.CENTER
-                      topMargin = dip(50)
-                      leftMargin = dip(5)
-                      rightMargin = dip(5)
-                      }
-                  }
-              }
+                        }.lparams(width = matchParent, height = dip(45)) {
+                            gravity = Gravity.CENTER
+                            topMargin = dip(50)
+                            leftMargin = dip(5)
+                            rightMargin = dip(5)
+                        }
+                    }
+                }
 
-          }.show()
+            }.show()
 
         }
     }

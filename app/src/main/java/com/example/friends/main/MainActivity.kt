@@ -24,7 +24,7 @@ import org.jetbrains.anko.setContentView
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(),MainContract.MainView {
+class MainActivity : BaseActivity(), MainContract.MainView {
 
     override fun setupComponent(applicationComponent: ApplicationComponent) {
         DaggerActivityComponent.builder()
@@ -37,9 +37,11 @@ class MainActivity : BaseActivity(),MainContract.MainView {
             .inject(this)
     }
 
-    @Inject lateinit var ui:MainActivityUI
-    @Inject lateinit var presenter :MainContract.MainPresenter
-    private lateinit var loadingDialog:DialogLoadingUi
+    @Inject
+    lateinit var ui: MainActivityUI
+    @Inject
+    lateinit var presenter: MainContract.MainPresenter
+    private lateinit var loadingDialog: DialogLoadingUi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,50 +71,46 @@ class MainActivity : BaseActivity(),MainContract.MainView {
 
 
     override fun showMessageIsAccountCreated(isCreate: Boolean) {
-        if(isCreate){
+        if (isCreate) {
             toast(getString(R.string.account_is_created))
-        }
-        else {
+        } else {
             toast(getString(R.string.account_is_not_created))
         }
     }
 
     override fun showMessageIsVerifyAccount(isVerify: Boolean) {
-        if(isVerify){
+        if (isVerify) {
             toast(getString(R.string.account_is_verify))
-        }
-        else {
-           toast( getString(R.string.account_is_not_verify))
+        } else {
+            toast(getString(R.string.account_is_not_verify))
         }
     }
 
     override fun showMessageIsSignIn(isSignin: Boolean) {
-        if(!isSignin){
-            Toast.makeText(this,getString(R.string.not_signin),Toast.LENGTH_SHORT).show()
+        if (!isSignin) {
+            Toast.makeText(this, getString(R.string.not_signin), Toast.LENGTH_SHORT).show()
         }
     }
 
     override fun showVerificationDialog() {
-        val dialogUI=DialogRegistrationUi(AnkoContext.Companion.create(ctx, ui.v))
-        dialogUI.chackCode.onClick{
+        val dialogUI = DialogRegistrationUi(AnkoContext.Companion.create(ctx, ui.v))
+        dialogUI.chackCode.onClick {
             val verifyCode = dialogUI.verifyCode.text.toString()
             presenter.checkVerificationCode(verifyCode)
         }
     }
 
-    override fun openMapActivity(accountId:String) {
-        val intent = Intent(this,MapActivity::class.java)
-        intent.putExtra("accountId",accountId)
+    override fun openMapActivity(accountId: String) {
+        val intent = Intent(this, MapActivity::class.java)
+        intent.putExtra("accountId", accountId)
         startActivity(intent)
 
     }
 
+    override fun getUserPhoneNumber() =
+        "${ui.numberCode.text.toString()}${ui.phoneNumber.text.toString()}"
 
-    override fun getUserPhoneNumber() ="${ui.numberCode.text.toString()}${ui.phoneNumber.text.toString()}"
-
-
-
-    private fun openVerificationDialog(context:Context) {
+    private fun openVerificationDialog(context: Context) {
         ui.createAccount.onClick {
             val name = ui.name.text.toString()
             val sname = ui.sname.text.toString()
@@ -120,15 +118,15 @@ class MainActivity : BaseActivity(),MainContract.MainView {
             val geolocation = null
             val friends = null
             val image = null
-            val user = User("",name,sname,phoneNumber,geolocation,friends,image)
-            if(phoneNumber.isNotEmpty() && phoneNumber.length > 10 ) {
+            val user = User("", name, sname, phoneNumber, geolocation, friends, image)
+            if (phoneNumber.isNotEmpty() && phoneNumber.length > 10) {
                 presenter.createAccount(user)
-            }else{
-                Toast.makeText(context,getString(R.string.take_number_error),Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, getString(R.string.take_number_error), Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
-
 
 
 }
