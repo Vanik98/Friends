@@ -9,6 +9,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.friends.R
@@ -104,20 +105,14 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
         }
 
     }
-    private fun displayFeedbackDialog(view: View) {
-        val feedbackDialogUi by lazy {
-            contentView?.let {
-                DialogLoadingUi(AnkoContext.create(ctx, it))
-            }
-        }
-    }
+
     override fun openLoadingDialog() {
-//        displayFeedbackDialog(MapActivityUI)
-//        DialogUtil.openLoadingDialog(AnkoContext.create(ctx,DialogLoadingUi().dialog))
+        val layout : ConstraintLayout  = findViewById(R.id.map_layout)
+        DialogUtil.openLoadingDialog(AnkoContext.create(ctx,layout))
     }
 
     override fun closeLoadingDialog() {
-//        DialogUtil.closeLoadingDialog()
+        DialogUtil.closeLoadingDialog()
     }
 
     override fun showUserInformation(user: User) {
