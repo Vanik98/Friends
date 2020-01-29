@@ -109,6 +109,7 @@ class FriendsAppFirebase @Inject constructor(
     }
 
     fun getUser(accountId: String, onFinishedListener: MapContract.MapModel.OnFinishedListener) {
+        onFinishedListener.onProgress()
         Log.i("vvv", "$accountId")
         databaseReference = FirebaseDatabase.getInstance().reference
         val userRef = databaseReference.child("users").child(accountId)

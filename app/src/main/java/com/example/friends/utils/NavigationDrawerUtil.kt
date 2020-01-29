@@ -1,4 +1,4 @@
-package com.example.friends.navigationdrawer
+package com.example.friends.utils
 
 import android.content.Intent
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -10,7 +10,7 @@ import com.example.friends.map.MapActivity
 import com.example.friends.settings.SettingsActivity
 import com.google.android.material.navigation.NavigationView
 
-object NavigationDrawer {
+object NavigationDrawerUtil {
 
     lateinit var navigationView: NavigationView
     lateinit var drawerLayout: DrawerLayout
@@ -25,7 +25,9 @@ object NavigationDrawer {
         toolbar = activity.findViewById(R.id.toolbar)
         activity.setSupportActionBar(toolbar)
         activity.supportActionBar!!.setDisplayShowTitleEnabled(false)
-        actionBarDrawerToggle = ActionBarDrawerToggle(activity, drawerLayout, toolbar, 0, 0)
+        actionBarDrawerToggle = ActionBarDrawerToggle(activity,
+            drawerLayout,
+            toolbar, 0, 0)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         navigationView = activity.findViewById(R.id.navigation_menu)

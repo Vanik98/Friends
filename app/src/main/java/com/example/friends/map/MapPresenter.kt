@@ -12,12 +12,18 @@ class MapPresenter @Inject constructor(
 
     override fun loadData(accountId: String) {
         model.getUser(accountId,object :MapContract.MapModel.OnFinishedListener{
-           override fun onFinished(user: User) {
+
+            override fun onFinished(user: User) {
+               view.closeLoadingDialog()
                view.showUserInformation(user)
            }
 
-           override fun onFailure(t: Throwable) {
+            override fun onProgress() {
+                view.openLoadingDialog()
+            }
 
+           override fun onFailure(t: Throwable) {
+               view.closeLoadingDialog()
            }
 
        })

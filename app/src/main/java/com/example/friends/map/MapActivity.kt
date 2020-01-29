@@ -7,16 +7,13 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.friends.R
-import com.example.friends.anko.DialogLoadingUi
-import com.example.friends.anko.MapActivityUI
 import com.example.friends.base.BaseActivity
-import com.example.friends.navigationdrawer.NavigationDrawer
+import com.example.friends.utils.NavigationDrawerUtil
 import com.example.friends.di.component.ApplicationComponent
 import com.example.friends.di.component.DaggerActivityComponent
 import com.example.friends.di.module.BaseActivityModule
@@ -32,7 +29,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.contentView
 import org.jetbrains.anko.ctx
 import javax.inject.Inject
 
@@ -49,7 +45,6 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
     }
 
     @Inject lateinit var presenter: MapPresenter
-    @Inject lateinit var ui: MapActivityUI
 
     private lateinit var mMap: GoogleMap
     private lateinit var locationManager: LocationManager
@@ -60,7 +55,7 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
         setMap()
-        NavigationDrawer.setToolBar(this)
+        NavigationDrawerUtil.setToolBar(this)
         presenter.attach(this)
         loadUserData()
     }
@@ -129,8 +124,8 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
     }
 
     private fun setNameAndPhoneInMenu(nameSurname: String, phone: String) {
-        val nameSurnameTV: TextView = NavigationDrawer.drawerLayout.findViewById(R.id.user_name)
-        val phoneTV: TextView = NavigationDrawer.drawerLayout.findViewById(R.id.user_phone)
+        val nameSurnameTV: TextView = NavigationDrawerUtil.drawerLayout.findViewById(R.id.user_name)
+        val phoneTV: TextView = NavigationDrawerUtil.drawerLayout.findViewById(R.id.user_phone)
         nameSurnameTV.text = nameSurname
         phoneTV.text = phone
     }

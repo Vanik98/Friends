@@ -6,6 +6,10 @@ import com.example.friends.data.model.User
 interface MapContract {
     interface MapView : BaseContract.View {
         fun showUserInformation(user:User)
+
+        fun openLoadingDialog()
+
+        fun closeLoadingDialog()
     }
 
     interface MapPresenter : BaseContract.Presenter<MapView> {
@@ -19,6 +23,8 @@ interface MapContract {
         interface OnFinishedListener {
 
             fun onFinished(user:User)
+
+            fun onProgress()
 
             fun onFailure(t: Throwable)
 

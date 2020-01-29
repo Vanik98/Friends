@@ -17,6 +17,7 @@ import com.example.friends.map.MapActivity
 import com.example.friends.anko.DialogRegistrationUi
 import com.example.friends.anko.MainActivityUI
 import com.example.friends.data.model.User
+import com.example.friends.utils.DialogUtil
 import org.jetbrains.anko.AnkoContext
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -41,7 +42,6 @@ class MainActivity : BaseActivity(), MainContract.MainView {
     lateinit var ui: MainActivityUI
     @Inject
     lateinit var presenter: MainContract.MainPresenter
-    private lateinit var loadingDialog: DialogLoadingUi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,11 +62,11 @@ class MainActivity : BaseActivity(), MainContract.MainView {
     }
 
     override fun openLoadingDialog() {
-        loadingDialog = DialogLoadingUi(AnkoContext.Companion.create(ctx, ui.v))
+        DialogUtil.openLoadingDialog(AnkoContext.Companion.create(ctx, ui.v))
     }
 
     override fun closeLoadingDialog() {
-        loadingDialog.dialog.dismiss()
+        DialogUtil.closeLoadingDialog()
     }
 
 
