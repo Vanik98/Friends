@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -13,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.friends.R
 import com.example.friends.base.BaseActivity
+import com.example.friends.data.DataController
 import com.example.friends.utils.NavigationDrawerUtil
 import com.example.friends.di.component.ApplicationComponent
 import com.example.friends.di.component.DaggerActivityComponent
@@ -61,8 +63,12 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
     }
 
     private fun loadUserData() {
-        val accountId = intent.getStringExtra("accountId")
+        if (DataController.getUser() == null) {
+            val accountId = intent.getStringExtra("accountId")
             presenter.loadData(accountId)
+        }else{
+            showUserInformation(DataController.getUser()!!)
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -111,7 +117,6 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
     }
 
     override fun showUserInformation(user: User) {
-        if (user != null) {
             showGeolocation(user)
             setNameAndPhoneInMenu("${user.name} ${user.surname}", user.phone)
 //            val firends = user.friends
@@ -120,7 +125,6 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
 //                val friendUser = presenter.loadFriendData(friend)
 //                showGeolocation(friendUser)
 //            }
-        }
     }
 
     private fun setNameAndPhoneInMenu(nameSurname: String, phone: String) {
@@ -196,6 +200,10 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
             locationListener
         )
 
+    }
+
+    override fun onBackPressed() {
+        finishAffinity()
     }
 
 }

@@ -6,10 +6,12 @@
     android:id="@+id/drawerlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".map.MapActivity">
+    tools:context=".map.MapActivity"
+    >
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/map_layout"
     >
 
     <androidx.appcompat.widget.Toolbar
@@ -31,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_marginTop="40dp"
         tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
@@ -43,7 +46,7 @@
         app:itemTextColor="@color/colorToolBar"
         app:headerLayout="@layout/headr"
         app:menu="@menu/drawer_menu"
-        android:background="@color/colorWhiteLight"
+        android:background="@color/colorWhite"
         />
 
 </androidx.drawerlayout.widget.DrawerLayout>

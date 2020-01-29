@@ -13,4 +13,5 @@
     <color name="colorBlueDark">#1A237E</color>
     <color name="colorOrange">#ffbf00</color>
     <color name="colorToolBar">#292933</color>
+    <color name="colorGrayAlpha">#80dedede</color>
 </resources>
