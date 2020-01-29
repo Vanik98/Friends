@@ -39,20 +39,22 @@ object NavigationDrawerUtil {
             when (it.itemId) {
                 R.id.nav_map -> {
                     if (!navigationView.menu.getItem(0).isChecked) {
-                        it.isChecked = true
+                        navigationView.setCheckedItem(R.id.nav_map)
                         activity.startActivity(Intent(activity, MapActivity::class.java))
                     }
                 }
                 R.id.nav_friends -> {
                     if (!navigationView.menu.getItem(1).isChecked) {
-                        it.isChecked = true
+                        navigationView.setCheckedItem(R.id.nav_friends)
                         activity.startActivity(Intent(activity, FriendsInfoActivity::class.java))
+                        activity.finish()
                     }
                 }
                 R.id.nav_settings -> {
                     if (!navigationView.menu.getItem(2).isChecked) {
-                        it.isChecked = true
+                        navigationView.setCheckedItem(R.id.nav_settings)
                         activity.startActivity(Intent(activity, SettingsActivity::class.java))
+                        activity.finish()
                     }
                 }
             }

@@ -1,6 +1,6 @@
 package com.example.friends.map
 
-import com.example.friends.data.model.Friends
+import com.example.friends.data.DataController
 import com.example.friends.data.model.User
 import javax.inject.Inject
 
@@ -11,22 +11,22 @@ class MapPresenter @Inject constructor(
     private lateinit var view: MapContract.MapView
 
     override fun loadData(accountId: String) {
-        model.getUser(accountId,object :MapContract.MapModel.OnFinishedListener{
+            model.getUser(accountId, object : MapContract.MapModel.OnFinishedListener {
+                override fun onFinished(user: User) {
+                    view.closeLoadingDialog()
+                    view.showUserInformation(user)
+                    DataController.setUser(user)
+                }
 
-            override fun onFinished(user: User) {
-               view.closeLoadingDialog()
-               view.showUserInformation(user)
-           }
+                override fun onProgress() {
+                    view.openLoadingDialog()
+                }
 
-            override fun onProgress() {
-                view.openLoadingDialog()
-            }
+                override fun onFailure(t: Throwable) {
+                    view.closeLoadingDialog()
+                }
 
-           override fun onFailure(t: Throwable) {
-               view.closeLoadingDialog()
-           }
-
-       })
+            })
     }
 
     override fun loadFriendData(freiendAccountIds: String) {

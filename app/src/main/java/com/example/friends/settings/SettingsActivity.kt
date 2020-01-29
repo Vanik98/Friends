@@ -1,5 +1,6 @@
 package com.example.friends.settings
 
+import android.content.Intent
 import android.os.Bundle
 import com.example.friends.R
 import com.example.friends.base.BaseActivity
@@ -7,6 +8,7 @@ import com.example.friends.di.component.ApplicationComponent
 import com.example.friends.di.component.DaggerActivityComponent
 import com.example.friends.di.module.BaseActivityModule
 import com.example.friends.di.module.SettingsModule
+import com.example.friends.map.MapActivity
 import com.example.friends.utils.NavigationDrawerUtil
 import javax.inject.Inject
 
@@ -30,6 +32,10 @@ class SettingsActivity : BaseActivity(),SettingsContract.SettingsView {
     }
     private fun showSettingsList(){
 
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MapActivity::class.java))
     }
 
 }
