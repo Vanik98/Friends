@@ -19,7 +19,6 @@ import com.example.friends.di.module.BaseActivityModule
 import com.example.friends.di.module.FirbaseModule
 import com.example.friends.di.module.MapModule
 import com.example.friends.data.model.User
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -57,7 +56,6 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
         presenter.attach(this)
         loadUserData()
     }
-
 
     private fun loadUserData() {
         val accountId = intent.getStringExtra("accountId")
@@ -187,26 +185,5 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
         )
 
     }
-
-    private fun setToolBar() {
-//        drawerLayout = findViewById(R.id.drawerlayout)
-//        toolbar = findViewById(R.id.toolbar)
-//        setSupportActionBar(toolbar)
-//        supportActionBar!!.setDisplayShowTitleEnabled(false)
-//        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, 0, 0)
-//        drawerLayout.addDrawerListener(actionBarDrawerToggle)
-//        actionBarDrawerToggle.syncState()
-//        navigationView = findViewById(R.id.navigation_menu)
-//        navigationView.setNavigationItemSelectedListener {
-//            when(it.itemId){
-//                R.id.nav_map -> startActivity(Intent(this,MapActivity::class.java))
-//                R.id.nav_friends -> startActivity(Intent(this,FriendsInfoActivity::class.java))
-//                R.id.nav_settings ->  startActivity(Intent(this,SettingsActivity::class.java))
-//            }
-//            return@setNavigationItemSelectedListener true
-//        }
-//        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-    }
-
 
 }

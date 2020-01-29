@@ -12,7 +12,7 @@ import dagger.Provides
 class MapModule{
     @Provides fun provideMainActivity()= MapActivity()
 
-    @Provides fun provideMapPresenter(mapModel: MapContract.MapModel):MapContract.MapPresenter= MapPresenter(mapModel)
+    @Provides fun provideMapPresenter(mapModel: MapContract.MapModel):MapContract.MapPresenter = MapPresenter(mapModel)
 
-    @Provides fun provideMapModel(firebase: FriendsAppFirebase):MapContract.MapModel= MapModel(firebase)
+    @Provides fun provideMapModel(firebase: FriendsAppFirebase):MapContract.MapModel = MapModel(firebase)
 }

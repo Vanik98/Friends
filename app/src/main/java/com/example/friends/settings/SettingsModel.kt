@@ -1,4 +1,4 @@
 package com.example.friends.settings
 
-class SettingsModel {
+class SettingsModel : SettingsContract.SettingsModel{
 }

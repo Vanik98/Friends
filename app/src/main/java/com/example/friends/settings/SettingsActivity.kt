@@ -12,8 +12,9 @@ import com.example.friends.di.module.MapModule
 import com.example.friends.di.module.SettingsModule
 import com.example.friends.navigationdrawer.NavigationDrawer
 import com.google.android.material.navigation.NavigationView
+import javax.inject.Inject
 
-class SettingsActivity : BaseActivity() {
+class SettingsActivity : BaseActivity(),SettingsContract.SettingsView {
     override fun setupComponent(applicationComponent: ApplicationComponent) {
         DaggerActivityComponent.builder()
             .applicationComponent(applicationComponent)
@@ -22,10 +23,17 @@ class SettingsActivity : BaseActivity() {
             .build()
             .inject(this)
     }
+    @Inject
+    lateinit var presenter:SettingsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         NavigationDrawer.setToolBar(this)
+        presenter.attach(this)
     }
+    private fun showSettingsList(){
+
+    }
+
 }
