@@ -7,10 +7,13 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.friends.R
+import com.example.friends.anko.DialogLoadingUi
+import com.example.friends.anko.MapActivityUI
 import com.example.friends.base.BaseActivity
 import com.example.friends.navigationdrawer.NavigationDrawer
 import com.example.friends.di.component.ApplicationComponent
@@ -19,6 +22,7 @@ import com.example.friends.di.module.BaseActivityModule
 import com.example.friends.di.module.FirbaseModule
 import com.example.friends.di.module.MapModule
 import com.example.friends.data.model.User
+import com.example.friends.utils.DialogUtil
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -26,6 +30,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.contentView
+import org.jetbrains.anko.ctx
 import javax.inject.Inject
 
 class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
@@ -40,8 +47,8 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
             .inject(this)
     }
 
-    @Inject
-    lateinit var presenter: MapPresenter
+    @Inject lateinit var presenter: MapPresenter
+    @Inject lateinit var ui: MapActivityUI
 
     private lateinit var mMap: GoogleMap
     private lateinit var locationManager: LocationManager
@@ -97,11 +104,26 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
         }
 
     }
+    private fun displayFeedbackDialog(view: View) {
+        val feedbackDialogUi by lazy {
+            contentView?.let {
+                DialogLoadingUi(AnkoContext.create(ctx, it))
+            }
+        }
+    }
+    override fun openLoadingDialog() {
+//        displayFeedbackDialog(MapActivityUI)
+//        DialogUtil.openLoadingDialog(AnkoContext.create(ctx,DialogLoadingUi().dialog))
+    }
+
+    override fun closeLoadingDialog() {
+//        DialogUtil.closeLoadingDialog()
+    }
 
     override fun showUserInformation(user: User) {
         if (user != null) {
             showGeolocation(user)
-            setNameAndPhoneInMenu(user.name, user.phone)
+            setNameAndPhoneInMenu("${user.name} ${user.surname}", user.phone)
 //            val firends = user.friends
 //            for (i in 0 until firends!!.usersIdList.size){
 //                val friend = firends.usersIdList[i]
@@ -111,10 +133,10 @@ class MapActivity : BaseActivity(), OnMapReadyCallback, MapContract.MapView {
         }
     }
 
-    private fun setNameAndPhoneInMenu(name: String, phone: String) {
-        val nameTV: TextView = NavigationDrawer.drawerLayout.findViewById(R.id.user_name)
+    private fun setNameAndPhoneInMenu(nameSurname: String, phone: String) {
+        val nameSurnameTV: TextView = NavigationDrawer.drawerLayout.findViewById(R.id.user_name)
         val phoneTV: TextView = NavigationDrawer.drawerLayout.findViewById(R.id.user_phone)
-        nameTV.text = name
+        nameSurnameTV.text = nameSurname
         phoneTV.text = phone
     }
 
